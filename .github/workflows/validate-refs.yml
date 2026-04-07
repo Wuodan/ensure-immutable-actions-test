@@ -89,7 +89,7 @@ jobs:
                 "isFirstParty": false,
                 "immutable": true,
                 "releaseFound": false,
-                "message": "Pinned to full commit SHA"
+                "message": "Immutable (full SHA reference)"
               }
             ],
             "unsupported-actions": []
@@ -149,7 +149,7 @@ jobs:
                 "isFirstParty": false,
                 "immutable": true,
                 "releaseFound": false,
-                "message": "Pinned to full commit SHA"
+                "message": "Immutable (full SHA reference)"
               },
               {
                 "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@db88ac462544346b5880f6c04a69486f72ce7173",
@@ -160,7 +160,7 @@ jobs:
                 "isFirstParty": false,
                 "immutable": true,
                 "releaseFound": false,
-                "message": "Pinned to full commit SHA"
+                "message": "Immutable (full SHA reference)"
               },
               {
                 "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@db88ac462544346b5880f6c04a69486f72ce7173",
@@ -171,7 +171,7 @@ jobs:
                 "isFirstParty": false,
                 "immutable": true,
                 "releaseFound": false,
-                "message": "Pinned to full commit SHA"
+                "message": "Immutable (full SHA reference)"
               },
               {
                 "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
@@ -182,7 +182,7 @@ jobs:
                 "isFirstParty": false,
                 "immutable": true,
                 "releaseFound": false,
-                "message": "Pinned to full commit SHA"
+                "message": "Immutable (full SHA reference)"
               }
             ],
             "unsupported-actions": []
@@ -242,7 +242,7 @@ jobs:
                 "isFirstParty": false,
                 "immutable": true,
                 "releaseFound": false,
-                "message": "Pinned to full commit SHA"
+                "message": "Immutable (full SHA reference)"
               }
             ],
             "unsupported-actions": [
@@ -250,7 +250,7 @@ jobs:
                 "uses": "docker://alpine:3.20",
                 "supported": false,
                 "unsupportedType": "protocol-reference",
-                "message": "Unsupported reference type: protocol-based action"
+                "message": "Unsupported reference type: docker://"
               }
             ]
           }
