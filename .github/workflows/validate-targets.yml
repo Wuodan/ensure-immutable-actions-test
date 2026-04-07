@@ -1,0 +1,13 @@
+name: Validate Targets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  remote-composite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
+
+  remote-reusable:
+    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main

@@ -1,6 +1,0 @@
-name: Parent Composite
-
-runs:
-  using: composite
-  steps:
-    - uses: ./nested-composite

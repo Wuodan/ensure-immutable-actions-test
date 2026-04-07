@@ -1,6 +1,0 @@
-name: Nested Composite
-
-runs:
-  using: composite
-  steps:
-    - uses: owner/example-action@v1
