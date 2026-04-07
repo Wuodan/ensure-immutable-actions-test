@@ -4,6 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  direct-protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://alpine:3.20
+
   remote-composite:
     runs-on: ubuntu-latest
     steps:
