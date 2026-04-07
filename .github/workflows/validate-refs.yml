@@ -25,7 +25,7 @@ jobs:
 
       - name: Run ensure-immutable-actions
         id: scan
-        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.6
+        uses: Wuodan/ensure-immutable-actions@v2.1.1
         with:
           github-token: ${{ github.token }}
           workflows: ${{ matrix.target }}
@@ -78,7 +78,7 @@ jobs:
       - name: Run ensure-immutable-actions with fail-on-mutable enabled
         id: scan
         continue-on-error: true
-        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.6
+        uses: Wuodan/ensure-immutable-actions@v2.1.1
         with:
           github-token: ${{ github.token }}
           workflows: targets-mutable.yml
