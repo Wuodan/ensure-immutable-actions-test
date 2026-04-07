@@ -6,16 +6,25 @@ This repository is a caller/workflow-under-test for manual validation of
 ## What it does
 
 - `validate-targets.yml` references remote composite actions and a remote reusable
-  workflow from `Wuodan/ensure-immutable-actions-test-custom-actions`
+  workflow from `Wuodan/ensure-immutable-actions-test-custom-actions` using
+  mutable `@main` refs
+- `validate-targets-immutable.yml` references the same remote targets using a
+  full commit SHA
 - `validate-remote-recursion.yml` runs `Wuodan/ensure-immutable-actions` against
   `validate-targets.yml`
+- `validate-remote-recursion-immutable.yml` runs
+  `Wuodan/ensure-immutable-actions` against `validate-targets-immutable.yml`
 
 ## How to run it
 
-Run only `validate-remote-recursion.yml` manually in GitHub Actions.
+Run one of these workflows manually in GitHub Actions:
 
-`validate-targets.yml` is the workflow file being scanned by the action under
-test. It does not need to be run for the scanner validation scenario.
+- `validate-remote-recursion.yml` for the mutable `@main` scenario
+- `validate-remote-recursion-immutable.yml` for the immutable full-SHA scenario
+
+The `validate-targets*.yml` workflows are the workflow files being scanned by
+the action under test. They do not need to be run for the scanner validation
+scenario.
 
 ## Expected behavior
 
@@ -26,3 +35,9 @@ The action under test should recurse into:
 - remote reusable workflows
 - local `./...` references inside reusable workflows using this caller repo's
   workspace
+
+The mutable scenario should report the remote refs as mutable.
+
+The immutable scenario should report the same remote refs as immutable because
+they are pinned to the full commit SHA
+`87788a8bfd15d2098b295b8193e16019bf2e45db`.
