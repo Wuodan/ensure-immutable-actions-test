@@ -28,13 +28,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Sort array-valued outputs so ordering differences do not fail the comparison.
+          MUTABLE_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
+          IMMUTABLE_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
+          UNSUPPORTED_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
+
           cat > actual.json <<EOF
           {
             "all-passed": $ALL_PASSED,
             "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS,
-            "immutable-actions": $IMMUTABLE_ACTIONS,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS
+            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
+            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
+            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
           }
           EOF
 
@@ -45,17 +50,6 @@ jobs:
               "targets-mutable.yml"
             ],
             "mutable-actions": [
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": ".github/workflows/reusable.yml",
-                "ref": "main",
-                "isFirstParty": false,
-                "immutable": false,
-                "releaseFound": false,
-                "message": "No release found for this reference"
-              },
               {
                 "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
                 "owner": "Wuodan",
@@ -72,6 +66,17 @@ jobs:
                 "owner": "Wuodan",
                 "repo": "ensure-immutable-actions-test-custom-actions",
                 "actionPath": "composite-actions/parent/child",
+                "ref": "main",
+                "isFirstParty": false,
+                "immutable": false,
+                "releaseFound": false,
+                "message": "No release found for this reference"
+              },
+              {
+                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
+                "owner": "Wuodan",
+                "repo": "ensure-immutable-actions-test-custom-actions",
+                "actionPath": ".github/workflows/reusable.yml",
                 "ref": "main",
                 "isFirstParty": false,
                 "immutable": false,
@@ -96,7 +101,7 @@ jobs:
           }
           EOF
 
-          diff -u <(jq -S . expected.json) <(jq -S . actual.json)
+          diff -u expected.json actual.json
 
   validate-immutable:
     runs-on: ubuntu-latest
@@ -122,13 +127,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Sort array-valued outputs so ordering differences do not fail the comparison.
+          MUTABLE_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
+          IMMUTABLE_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
+          UNSUPPORTED_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
+
           cat > actual.json <<EOF
           {
             "all-passed": $ALL_PASSED,
             "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS,
-            "immutable-actions": $IMMUTABLE_ACTIONS,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS
+            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
+            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
+            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
           }
           EOF
 
@@ -140,17 +150,6 @@ jobs:
             ],
             "mutable-actions": [],
             "immutable-actions": [
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@db88ac462544346b5880f6c04a69486f72ce7173",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": ".github/workflows/reusable.yml",
-                "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              },
               {
                 "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@db88ac462544346b5880f6c04a69486f72ce7173",
                 "owner": "Wuodan",
@@ -183,13 +182,24 @@ jobs:
                 "immutable": true,
                 "releaseFound": false,
                 "message": "Immutable (full SHA reference)"
+              },
+              {
+                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@db88ac462544346b5880f6c04a69486f72ce7173",
+                "owner": "Wuodan",
+                "repo": "ensure-immutable-actions-test-custom-actions",
+                "actionPath": ".github/workflows/reusable.yml",
+                "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
+                "isFirstParty": false,
+                "immutable": true,
+                "releaseFound": false,
+                "message": "Immutable (full SHA reference)"
               }
             ],
             "unsupported-actions": []
           }
           EOF
 
-          diff -u <(jq -S . expected.json) <(jq -S . actual.json)
+          diff -u expected.json actual.json
 
   validate-unsupported:
     runs-on: ubuntu-latest
@@ -215,13 +225,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Sort array-valued outputs so ordering differences do not fail the comparison.
+          MUTABLE_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
+          IMMUTABLE_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
+          UNSUPPORTED_ACTIONS_SORTED="$(jq -c 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
+
           cat > actual.json <<EOF
           {
             "all-passed": $ALL_PASSED,
             "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS,
-            "immutable-actions": $IMMUTABLE_ACTIONS,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS
+            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
+            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
+            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
           }
           EOF
 
@@ -249,11 +264,11 @@ jobs:
               {
                 "uses": "docker://alpine:3.20",
                 "supported": false,
-                "unsupportedType": "protocol-reference",
+                "unsupportedType": "protocol",
                 "message": "Unsupported reference type: docker://"
               }
             ]
           }
           EOF
 
-          diff -u <(jq -S . expected.json) <(jq -S . actual.json)
+          diff -u expected.json actual.json
