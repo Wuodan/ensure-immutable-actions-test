@@ -4,22 +4,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  validate-mutable:
+  validate:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - targets-mutable.yml
+          - targets-immutable.yml
+          - targets-unsupported.yml
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run ensure-immutable-actions against mutable refs
+      - name: Run ensure-immutable-actions
         id: scan
         uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.4
         with:
           github-token: ${{ github.token }}
-          workflows: targets-mutable.yml
+          workflows: ${{ matrix.target }}
           fail-on-mutable: false
 
-      - name: Assert mutable outputs
+      - name: Assert outputs
         env:
+          TARGET: ${{ matrix.target }}
           ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
           WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
           MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
@@ -46,98 +54,7 @@ jobs:
           jq . actual.json > actual.pretty.json
           mv actual.pretty.json actual.json
 
-          cp .github/expected/targets-mutable.json expected.json
-
-          diff -u expected.json actual.json
-
-  validate-immutable:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run ensure-immutable-actions against immutable refs
-        id: scan
-        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.4
-        with:
-          github-token: ${{ github.token }}
-          workflows: targets-immutable.yml
-          fail-on-mutable: false
-
-      - name: Assert immutable outputs
-        env:
-          ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
-          WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
-          MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
-          IMMUTABLE_ACTIONS: ${{ steps.scan.outputs['immutable-actions'] }}
-          UNSUPPORTED_ACTIONS: ${{ steps.scan.outputs['unsupported-actions'] }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Sort array-valued outputs so ordering differences do not fail the comparison.
-          MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
-          IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
-          UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
-
-          cat > actual.json <<EOF
-          {
-            "all-passed": $ALL_PASSED,
-            "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
-            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
-          }
-          EOF
-
-          jq . actual.json > actual.pretty.json
-          mv actual.pretty.json actual.json
-
-          cp .github/expected/targets-immutable.json expected.json
-
-          diff -u expected.json actual.json
-
-  validate-unsupported:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run ensure-immutable-actions against unsupported refs
-        id: scan
-        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.4
-        with:
-          github-token: ${{ github.token }}
-          workflows: targets-unsupported.yml
-          fail-on-mutable: false
-
-      - name: Assert unsupported outputs
-        env:
-          ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
-          WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
-          MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
-          IMMUTABLE_ACTIONS: ${{ steps.scan.outputs['immutable-actions'] }}
-          UNSUPPORTED_ACTIONS: ${{ steps.scan.outputs['unsupported-actions'] }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Sort array-valued outputs so ordering differences do not fail the comparison.
-          MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
-          IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
-          UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
-
-          cat > actual.json <<EOF
-          {
-            "all-passed": $ALL_PASSED,
-            "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
-            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
-          }
-          EOF
-
-          jq . actual.json > actual.pretty.json
-          mv actual.pretty.json actual.json
-
-          cp .github/expected/targets-unsupported.json expected.json
+          EXPECTED_FILE=".github/expected/${TARGET%.yml}.json"
+          cp "$EXPECTED_FILE" expected.json
 
           diff -u expected.json actual.json
