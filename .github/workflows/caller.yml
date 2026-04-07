@@ -1,0 +1,13 @@
+name: Caller
+
+on:
+  workflow_dispatch:
+
+jobs:
+  composite-local-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/parent-composite
+
+  reusable-local-path:
+    uses: ./.github/workflows/reusable.yml

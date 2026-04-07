@@ -1,0 +1,6 @@
+name: From Reusable
+
+runs:
+  using: composite
+  steps:
+    - uses: owner/reusable-nested-action@v2
