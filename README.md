@@ -12,20 +12,12 @@ This repository is a caller/workflow-under-test for manual validation of
   commit SHA
 - `targets-unsupported.yml` references a SHA-pinned remote composite action
   that contains a `docker://...` step
-- `validate-mutable-refs.yml` runs `Wuodan/ensure-immutable-actions` against
-  `targets-mutable.yml`
-- `validate-immutable-refs.yml` runs `Wuodan/ensure-immutable-actions` against
-  `targets-immutable.yml`
-- `validate-unsupported-refs.yml` runs `Wuodan/ensure-immutable-actions`
-  against `targets-unsupported.yml`
+- `validate-refs.yml` runs `Wuodan/ensure-immutable-actions` against all three
+  target workflows and validates the action outputs for each scenario
 
 ## How to run it
 
-Run one of these workflows manually in GitHub Actions:
-
-- `validate-mutable-refs.yml` for the mutable `@main` scenario
-- `validate-immutable-refs.yml` for the immutable full-SHA scenario
-- `validate-unsupported-refs.yml` for the unsupported `docker://` scenario
+Run `validate-refs.yml` manually in GitHub Actions.
 
 The `targets-*.yml` workflows are the workflow files being scanned by the
 action under test. They do not need to be run for the scanner validation
