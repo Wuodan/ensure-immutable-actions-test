@@ -7,6 +7,7 @@ jobs:
   remote-composite:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
 
   remote-reusable:
