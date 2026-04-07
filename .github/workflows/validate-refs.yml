@@ -29,6 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           # Sort array-valued outputs so ordering differences do not fail the comparison.
+          WORKFLOWS_CHECKED_SORTED="$(jq . <<<"$WORKFLOWS_CHECKED")"
           MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
           IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
           UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
@@ -36,7 +37,7 @@ jobs:
           cat > actual.json <<EOF
           {
             "all-passed": $ALL_PASSED,
-            "workflows-checked": $WORKFLOWS_CHECKED,
+            "workflows-checked": $WORKFLOWS_CHECKED_SORTED,
             "mutable-actions": $MUTABLE_ACTIONS_SORTED,
             "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
             "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
@@ -128,6 +129,7 @@ jobs:
         run: |
           set -euo pipefail
           # Sort array-valued outputs so ordering differences do not fail the comparison.
+          WORKFLOWS_CHECKED_SORTED="$(jq . <<<"$WORKFLOWS_CHECKED")"
           MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
           IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
           UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
@@ -135,7 +137,7 @@ jobs:
           cat > actual.json <<EOF
           {
             "all-passed": $ALL_PASSED,
-            "workflows-checked": $WORKFLOWS_CHECKED,
+            "workflows-checked": $WORKFLOWS_CHECKED_SORTED,
             "mutable-actions": $MUTABLE_ACTIONS_SORTED,
             "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
             "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
@@ -226,6 +228,7 @@ jobs:
         run: |
           set -euo pipefail
           # Sort array-valued outputs so ordering differences do not fail the comparison.
+          WORKFLOWS_CHECKED_SORTED="$(jq . <<<"$WORKFLOWS_CHECKED")"
           MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
           IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
           UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
@@ -233,7 +236,7 @@ jobs:
           cat > actual.json <<EOF
           {
             "all-passed": $ALL_PASSED,
-            "workflows-checked": $WORKFLOWS_CHECKED,
+            "workflows-checked": $WORKFLOWS_CHECKED_SORTED,
             "mutable-actions": $MUTABLE_ACTIONS_SORTED,
             "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
             "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
