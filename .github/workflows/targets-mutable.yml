@@ -1,4 +1,4 @@
-name: Validate Targets
+name: Targets Mutable
 
 on:
   workflow_dispatch:

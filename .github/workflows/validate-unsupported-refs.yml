@@ -1,4 +1,4 @@
-name: Validate Remote Recursion Immutable
+name: Validate Unsupported Refs
 
 on:
   workflow_dispatch:
@@ -9,9 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run ensure-immutable-actions against immutable workflow refs
+      - name: Run ensure-immutable-actions against unsupported refs
         uses: Wuodan/ensure-immutable-actions@development
         with:
           github-token: ${{ github.token }}
-          workflows: validate-targets-immutable.yml
+          workflows: targets-unsupported.yml
           fail-on-mutable: false

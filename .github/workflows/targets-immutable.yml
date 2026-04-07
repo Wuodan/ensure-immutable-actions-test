@@ -1,4 +1,4 @@
-name: Validate Targets Immutable
+name: Targets Immutable
 
 on:
   workflow_dispatch:
