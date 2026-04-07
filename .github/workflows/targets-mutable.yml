@@ -10,5 +10,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
 
+  remote-composite-duplicate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
+
   remote-reusable:
     uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main
