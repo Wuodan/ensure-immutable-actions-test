@@ -2,6 +2,12 @@ name: Validate Refs
 
 on:
   workflow_dispatch:
+    inputs:
+      skip_output_assertions:
+        description: 'Skip hardcoded output assertions and only run the validation workflows'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   validate:
@@ -26,6 +32,7 @@ jobs:
           fail-on-mutable: false
 
       - name: Assert outputs
+        if: ${{ !inputs.skip_output_assertions }}
         env:
           TARGET: ${{ matrix.target }}
           ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
@@ -78,6 +85,7 @@ jobs:
           fail-on-mutable: true
 
       - name: Assert scan step failed
+        if: ${{ !inputs.skip_output_assertions }}
         shell: bash
         run: |
           set -euo pipefail
