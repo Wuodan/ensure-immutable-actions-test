@@ -46,63 +46,7 @@ jobs:
           jq . actual.json > actual.pretty.json
           mv actual.pretty.json actual.json
 
-          cat > expected.json <<'EOF'
-          {
-            "all-passed": false,
-            "workflows-checked": [
-              "targets-mutable.yml"
-            ],
-            "mutable-actions": [
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": ".github/workflows/reusable.yml",
-                "ref": "main",
-                "isFirstParty": false,
-                "immutable": false,
-                "releaseFound": false,
-                "message": "No release found for this reference"
-              },
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@main",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/parent/child",
-                "ref": "main",
-                "isFirstParty": false,
-                "immutable": false,
-                "releaseFound": false,
-                "message": "No release found for this reference"
-              },
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/parent",
-                "ref": "main",
-                "isFirstParty": false,
-                "immutable": false,
-                "releaseFound": false,
-                "message": "No release found for this reference"
-              }
-            ],
-            "immutable-actions": [
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/leaf",
-                "ref": "87788a8bfd15d2098b295b8193e16019bf2e45db",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              }
-            ],
-            "unsupported-actions": []
-          }
-          EOF
+          cp .github/expected/targets-mutable.json expected.json
 
           diff -u expected.json actual.json
 
@@ -148,62 +92,7 @@ jobs:
           jq . actual.json > actual.pretty.json
           mv actual.pretty.json actual.json
 
-          cat > expected.json <<'EOF'
-          {
-            "all-passed": true,
-            "workflows-checked": [
-              "targets-immutable.yml"
-            ],
-            "mutable-actions": [],
-            "immutable-actions": [
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@db88ac462544346b5880f6c04a69486f72ce7173",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": ".github/workflows/reusable.yml",
-                "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              },
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/leaf",
-                "ref": "87788a8bfd15d2098b295b8193e16019bf2e45db",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              },
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@db88ac462544346b5880f6c04a69486f72ce7173",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/parent/child",
-                "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              },
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@db88ac462544346b5880f6c04a69486f72ce7173",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/parent",
-                "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              }
-            ],
-            "unsupported-actions": []
-          }
-          EOF
+          cp .github/expected/targets-immutable.json expected.json
 
           diff -u expected.json actual.json
 
@@ -249,35 +138,6 @@ jobs:
           jq . actual.json > actual.pretty.json
           mv actual.pretty.json actual.json
 
-          cat > expected.json <<'EOF'
-          {
-            "all-passed": false,
-            "workflows-checked": [
-              "targets-unsupported.yml"
-            ],
-            "mutable-actions": [],
-            "immutable-actions": [
-              {
-                "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e",
-                "owner": "Wuodan",
-                "repo": "ensure-immutable-actions-test-custom-actions",
-                "actionPath": "composite-actions/docker-unsupported",
-                "ref": "64b6290f8d6f3adef61136543f43c6607d5b301e",
-                "isFirstParty": false,
-                "immutable": true,
-                "releaseFound": false,
-                "message": "Immutable (full SHA reference)"
-              }
-            ],
-            "unsupported-actions": [
-              {
-                "uses": "docker://alpine:3.20",
-                "supported": false,
-                "unsupportedType": "protocol",
-                "message": "Unsupported reference type: docker://"
-              }
-            ]
-          }
-          EOF
+          cp .github/expected/targets-unsupported.json expected.json
 
           diff -u expected.json actual.json

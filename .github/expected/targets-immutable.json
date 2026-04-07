@@ -1,0 +1,54 @@
+{
+  "all-passed": true,
+  "workflows-checked": [
+    "targets-immutable.yml"
+  ],
+  "mutable-actions": [],
+  "immutable-actions": [
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@db88ac462544346b5880f6c04a69486f72ce7173",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": ".github/workflows/reusable.yml",
+      "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": "composite-actions/leaf",
+      "ref": "87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@db88ac462544346b5880f6c04a69486f72ce7173",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": "composite-actions/parent/child",
+      "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@db88ac462544346b5880f6c04a69486f72ce7173",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": "composite-actions/parent",
+      "ref": "db88ac462544346b5880f6c04a69486f72ce7173",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    }
+  ],
+  "unsupported-actions": []
+}
