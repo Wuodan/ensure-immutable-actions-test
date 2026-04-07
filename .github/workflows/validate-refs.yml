@@ -12,7 +12,7 @@ jobs:
 
       - name: Run ensure-immutable-actions against mutable refs
         id: scan
-        uses: Wuodan/ensure-immutable-actions@development
+        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.4
         with:
           github-token: ${{ github.token }}
           workflows: targets-mutable.yml
@@ -106,7 +106,7 @@ jobs:
 
       - name: Run ensure-immutable-actions against immutable refs
         id: scan
-        uses: Wuodan/ensure-immutable-actions@development
+        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.4
         with:
           github-token: ${{ github.token }}
           workflows: targets-immutable.yml
@@ -199,7 +199,7 @@ jobs:
 
       - name: Run ensure-immutable-actions against unsupported refs
         id: scan
-        uses: Wuodan/ensure-immutable-actions@development
+        uses: Wuodan/ensure-immutable-actions@v2.1.1-pr.4
         with:
           github-token: ${{ github.token }}
           workflows: targets-unsupported.yml
