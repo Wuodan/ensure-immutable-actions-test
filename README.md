@@ -40,4 +40,4 @@ The mutable scenario should report the remote refs as mutable.
 
 The immutable scenario should report the same remote refs as immutable because
 they are pinned to the full commit SHA
-`87788a8bfd15d2098b295b8193e16019bf2e45db`.
+`db88ac462544346b5880f6c04a69486f72ce7173`.
