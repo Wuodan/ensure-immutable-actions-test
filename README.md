@@ -13,7 +13,8 @@ This repository is a caller/workflow-under-test for manual validation of
 - `targets-unsupported.yml` references a SHA-pinned remote composite action
   that contains a `docker://...` step
 - `validate-refs.yml` runs `Wuodan/ensure-immutable-actions` against all three
-  target workflows and validates the action outputs for each scenario
+  target workflows, validates the action outputs for each scenario, and checks
+  that `fail-on-mutable: true` fails the mutable scenario
 
 ## How to run it
 
