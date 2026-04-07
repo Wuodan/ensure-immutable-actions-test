@@ -33,6 +33,7 @@ jobs:
           MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
           IMMUTABLE_ACTIONS: ${{ steps.scan.outputs['immutable-actions'] }}
           UNSUPPORTED_ACTIONS: ${{ steps.scan.outputs['unsupported-actions'] }}
+          FIRST_PARTY_ACTIONS: ${{ steps.scan.outputs['first-party-actions'] }}
         shell: bash
         run: |
           set -euo pipefail
@@ -40,6 +41,7 @@ jobs:
           MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
           IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
           UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
+          FIRST_PARTY_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$FIRST_PARTY_ACTIONS")"
 
           cat > actual.json <<EOF
           {
@@ -47,7 +49,8 @@ jobs:
             "workflows-checked": $WORKFLOWS_CHECKED,
             "mutable-actions": $MUTABLE_ACTIONS_SORTED,
             "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED
+            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED,
+            "first-party-actions": $FIRST_PARTY_ACTIONS_SORTED
           }
           EOF
 

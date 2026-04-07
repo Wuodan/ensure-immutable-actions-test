@@ -31,5 +31,6 @@
       "unsupportedType": "protocol",
       "message": "Unsupported reference type: docker://"
     }
-  ]
+  ],
+  "first-party-actions": []
 }

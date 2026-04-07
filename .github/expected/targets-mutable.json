@@ -51,5 +51,31 @@
       "message": "Immutable (full SHA reference)"
     }
   ],
-  "unsupported-actions": []
+  "unsupported-actions": [],
+  "first-party-actions": [
+    {
+      "uses": "actions/checkout@v4",
+      "owner": "actions",
+      "repo": "checkout",
+      "ref": "v4",
+      "isFirstParty": true,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Excluded (first-party)",
+      "allowed": true,
+      "excluded": true
+    },
+    {
+      "uses": "actions/setup-node@v4",
+      "owner": "actions",
+      "repo": "setup-node",
+      "ref": "v4",
+      "isFirstParty": true,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Excluded (first-party)",
+      "allowed": true,
+      "excluded": true
+    }
+  ]
 }
