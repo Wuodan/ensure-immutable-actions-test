@@ -11,3 +11,6 @@ jobs:
 
   remote-reusable:
     uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@3aa32f4195cfe2c317e08bf59720997b7cecf3b7
+
+  local-reusable-workflow:
+    uses: ./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml

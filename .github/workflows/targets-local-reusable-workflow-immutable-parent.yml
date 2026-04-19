@@ -1,0 +1,8 @@
+name: Targets Local Reusable Workflow Immutable Parent
+
+on:
+  workflow_call:
+
+jobs:
+  child:
+    uses: ./.github/workflows/targets-local-reusable-workflow-immutable-child.yml

@@ -43,7 +43,7 @@ jobs:
             fail_on_mutable: false
             include_first_party: false
           - name: exclude-workflows selection
-            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml
+            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml,targets-local-reusable-workflow-*.yml
             expected_file: .github/expected/exclude-workflows-selection.json
             fail_on_mutable: false
             include_first_party: false

@@ -74,6 +74,21 @@
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main"
     },
     {
+      "actionPath": "composite-actions/local-reusable-workflow-target",
+      "entrypointUses": "./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "main",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "local-reusable-workflow",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@main"
+    },
+    {
       "actionPath": "composite-actions/parent/child",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
       "immutable": false,

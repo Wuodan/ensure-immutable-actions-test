@@ -87,6 +87,21 @@
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db"
     },
     {
+      "actionPath": "composite-actions/local-reusable-workflow-target",
+      "entrypointUses": "./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "e33e5680483b49d17eab65de15b068edfbd2474b",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "local-reusable-workflow",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@e33e5680483b49d17eab65de15b068edfbd2474b"
+    },
+    {
       "actionPath": "composite-actions/parent/child",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
       "immutable": true,

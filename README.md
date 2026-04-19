@@ -33,6 +33,7 @@ The action under test should recurse into:
 - remote reusable workflows
 - local `./...` references inside reusable workflows using this caller repo's
   workspace
+- nested local reusable workflow references that recurse again via `./...`
 
 The mutable scenario should report the remote refs as mutable.
 
