@@ -1,40 +1,40 @@
 {
   "all-passed": false,
-  "workflows-checked": [
-    "targets-unsupported.yml"
-  ],
-  "mutable-actions": [],
+  "first-party-actions": [],
   "immutable-actions": [
     {
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e",
-      "owner": "Wuodan",
-      "repo": "ensure-immutable-actions-test-custom-actions",
       "actionPath": "composite-actions/docker-unsupported",
-      "ref": "64b6290f8d6f3adef61136543f43c6607d5b301e",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e",
-      "sourceWorkflowFile": "targets-unsupported.yml",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "64b6290f8d6f3adef61136543f43c6607d5b301e",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
       "sourceJobName": "remote-composite",
       "sourceStepName": "unnamed step",
-      "isFirstParty": false,
-      "immutable": true,
-      "releaseFound": false,
-      "message": "Immutable (full SHA reference)"
+      "sourceWorkflowFile": "targets-unsupported.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e"
     }
   ],
+  "mutable-actions": [],
   "unsupported-actions": [
     {
-      "uses": "docker://alpine:3.20",
-      "supported": false,
+      "message": "Unsupported reference type: docker://",
       "sourceLocations": [
         {
-          "workflowFile": "targets-unsupported.yml",
           "jobName": "remote-composite",
-          "stepName": "unnamed step"
+          "stepName": "unnamed step",
+          "workflowFile": "targets-unsupported.yml"
         }
       ],
+      "supported": false,
       "unsupportedType": "protocol",
-      "message": "Unsupported reference type: docker://"
+      "uses": "docker://alpine:3.20"
     }
   ],
-  "first-party-actions": []
+  "workflows-checked": [
+    "targets-unsupported.yml"
+  ]
 }

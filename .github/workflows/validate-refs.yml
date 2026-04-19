@@ -81,7 +81,7 @@ jobs:
           UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
           FIRST_PARTY_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$FIRST_PARTY_ACTIONS")"
 
-          cat > actual.json <<EOF
+          cat <<EOF | jq -S . > actual.json
           {
             "all-passed": $ALL_PASSED,
             "workflows-checked": $WORKFLOWS_CHECKED,
@@ -92,12 +92,7 @@ jobs:
           }
           EOF
 
-          jq . actual.json > actual.pretty.json
-          mv actual.pretty.json actual.json
-
-          cp "$EXPECTED_FILE" expected.json
-
-          diff -u expected.json actual.json
+          diff -u "$EXPECTED_FILE" actual.json
 
   validate-fail-on-mutable:
     runs-on: ubuntu-latest
