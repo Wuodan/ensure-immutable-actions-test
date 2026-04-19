@@ -43,10 +43,25 @@ jobs:
             fail_on_mutable: false
             include_first_party: false
           - name: exclude-workflows selection
-            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml
+            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml
             expected_file: .github/expected/exclude-workflows-selection.json
             fail_on_mutable: false
             include_first_party: false
+          - name: invalid workflows input
+            workflows: "[].yml"
+            expected_file: .github/expected/invalid-workflows-input.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: exclude all workflows
+            exclude_workflows: validate-refs.yml,targets-*.yml
+            expected_file: .github/expected/exclude-all-workflows.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-mixed-first-party.yml include-first-party
+            workflows: targets-mixed-first-party.yml
+            expected_file: .github/expected/targets-mixed-first-party-include-first-party.json
+            fail_on_mutable: false
+            include_first_party: true
 
     steps:
       - uses: actions/checkout@v4
@@ -71,7 +86,7 @@ jobs:
           MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
           IMMUTABLE_ACTIONS: ${{ steps.scan.outputs['immutable-actions'] }}
           UNSUPPORTED_ACTIONS: ${{ steps.scan.outputs['unsupported-actions'] }}
-          FIRST_PARTY_ACTIONS: ${{ steps.scan.outputs['first-party-actions'] }}
+          FIRST_PARTY_ACTIONS: ${{ steps.scan.outputs['first-party-actions'] || '[]' }}
         shell: bash
         run: |
           set -euo pipefail
