@@ -1,0 +1,110 @@
+{
+  "workflows-checked": [
+    "targets-immutable.yml"
+  ],
+  "mutable-actions": [],
+  "immutable-actions": [
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-workflow@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": ".github/actions/local-from-workflow",
+      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": ".github/workflows/reusable.yml",
+      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "sourceJobName": "remote-reusable",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": "composite-actions/leaf",
+      "ref": "87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": "composite-actions/parent/child",
+      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "sourceJobName": "remote-composite",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    },
+    {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": "composite-actions/parent",
+      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "sourceJobName": "remote-composite",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": false,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Immutable (full SHA reference)"
+    }
+  ],
+  "unsupported-actions": [],
+  "first-party-actions": [
+    {
+      "uses": "actions/checkout@v4",
+      "owner": "actions",
+      "repo": "checkout",
+      "ref": "v4",
+      "isFirstParty": true,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Excluded (first-party)",
+      "allowed": true,
+      "excluded": true
+    },
+    {
+      "uses": "actions/setup-node@v4",
+      "owner": "actions",
+      "repo": "setup-node",
+      "ref": "v4",
+      "isFirstParty": true,
+      "immutable": true,
+      "releaseFound": false,
+      "message": "Excluded (first-party)",
+      "allowed": true,
+      "excluded": true
+    }
+  ],
+  "all-passed": true
+}

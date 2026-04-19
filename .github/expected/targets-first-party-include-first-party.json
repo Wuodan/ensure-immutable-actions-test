@@ -1,0 +1,68 @@
+{
+  "workflows-checked": [
+    "targets-first-party.yml"
+  ],
+  "mutable-actions": [
+    {
+      "uses": "actions/checkout@v4",
+      "owner": "actions",
+      "repo": "checkout",
+      "actionPath": "",
+      "ref": "v4",
+      "entrypointUses": "actions/checkout@v4",
+      "sourceWorkflowFile": "targets-first-party.yml",
+      "sourceJobName": "setup",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": true,
+      "immutable": false,
+      "releaseFound": false,
+      "message": "No release found for this reference"
+    },
+    {
+      "uses": "actions/setup-node@v4",
+      "owner": "actions",
+      "repo": "setup-node",
+      "actionPath": "",
+      "ref": "v4",
+      "entrypointUses": "actions/setup-node@v4",
+      "sourceWorkflowFile": "targets-first-party.yml",
+      "sourceJobName": "setup",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": true,
+      "immutable": false,
+      "releaseFound": false,
+      "message": "No release found for this reference"
+    }
+  ],
+  "immutable-actions": [],
+  "unsupported-actions": [],
+  "first-party-actions": [
+    {
+      "uses": "actions/checkout@v4",
+      "owner": "actions",
+      "repo": "checkout",
+      "actionPath": "",
+      "ref": "v4",
+      "isFirstParty": true,
+      "immutable": false,
+      "releaseFound": false,
+      "message": "No release found for this reference",
+      "allowed": false,
+      "excluded": false
+    },
+    {
+      "uses": "actions/setup-node@v4",
+      "owner": "actions",
+      "repo": "setup-node",
+      "actionPath": "",
+      "ref": "v4",
+      "isFirstParty": true,
+      "immutable": false,
+      "releaseFound": false,
+      "message": "No release found for this reference",
+      "allowed": false,
+      "excluded": false
+    }
+  ],
+  "all-passed": false
+}

@@ -11,14 +11,42 @@ on:
 
 jobs:
   validate:
+    name: validate (${{ matrix.scenario.name }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        target:
-          - targets-mutable.yml
-          - targets-immutable.yml
-          - targets-unsupported.yml
+        scenario:
+          - name: targets-mutable.yml
+            workflows: targets-mutable.yml
+            expected_file: .github/expected/targets-mutable.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-immutable.yml
+            workflows: targets-immutable.yml
+            expected_file: .github/expected/targets-immutable.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-unsupported.yml
+            workflows: targets-unsupported.yml
+            expected_file: .github/expected/targets-unsupported.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-first-party.yml include-first-party
+            workflows: targets-first-party.yml
+            expected_file: .github/expected/targets-first-party-include-first-party.json
+            fail_on_mutable: false
+            include_first_party: true
+          - name: workflows glob selection
+            workflows: targets-immut*.yml,targets-unsup*.yml
+            expected_file: .github/expected/workflows-glob-selection.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: exclude-workflows selection
+            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml
+            expected_file: .github/expected/exclude-workflows-selection.json
+            fail_on_mutable: false
+            include_first_party: false
 
     steps:
       - uses: actions/checkout@v4
@@ -28,13 +56,16 @@ jobs:
         uses: joshjohanning/ensure-immutable-actions@v2.5.1
         with:
           github-token: ${{ github.token }}
-          workflows: ${{ matrix.target }}
-          fail-on-mutable: false
+          workflows: ${{ matrix.scenario.workflows }}
+          exclude-workflows: ${{ matrix.scenario.exclude_workflows }}
+          fail-on-mutable: ${{ matrix.scenario.fail_on_mutable }}
+          include-first-party: ${{ matrix.scenario.include_first_party }}
 
       - name: Assert outputs
         if: ${{ !inputs.skip_output_assertions }}
         env:
-          TARGET: ${{ matrix.target }}
+          SCENARIO_NAME: ${{ matrix.scenario.name }}
+          EXPECTED_FILE: ${{ matrix.scenario.expected_file }}
           ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
           WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
           MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
@@ -64,7 +95,6 @@ jobs:
           jq . actual.json > actual.pretty.json
           mv actual.pretty.json actual.json
 
-          EXPECTED_FILE=".github/expected/${TARGET%.yml}.json"
           cp "$EXPECTED_FILE" expected.json
 
           diff -u expected.json actual.json
