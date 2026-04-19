@@ -161,7 +161,9 @@ jobs:
           }
           EOF
 
-          diff -u "$EXPECTED_FILE" actual.json
+          jq -S . "$EXPECTED_FILE" > expected.json
+
+          diff -u expected.json actual.json
 
   validate-fail-on-mutable:
     runs-on: ubuntu-latest
