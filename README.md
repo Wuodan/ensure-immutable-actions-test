@@ -1,28 +1,41 @@
 # ensure-immutable-actions Test Repo
 
 This repository is a caller/workflow-under-test for manual validation of
-`Wuodan/ensure-immutable-actions`.
+`ensure-immutable-actions`.
 
 ## What it does
 
 - `targets-mutable.yml` references remote composite actions and a remote
-  reusable workflow from `Wuodan/ensure-immutable-actions-test-custom-actions`
-  using mutable `@main` refs
+  reusable workflow from the companion fixtures repo using mutable `@main` refs
 - `targets-immutable.yml` references the same remote targets using a full
   commit SHA
 - `targets-unsupported.yml` references a SHA-pinned remote composite action
   that contains a `docker://...` step
-- `validate-refs.yml` runs `Wuodan/ensure-immutable-actions` against all three
-  target workflows, validates the action outputs for each scenario, and checks
-  that `fail-on-mutable: true` fails the mutable scenario
+- `validate-refs.yml` runs `ensure-immutable-actions` against all three target
+  workflows, validates the action outputs for each scenario, and checks that
+  `fail-on-mutable: true` fails the mutable scenario
 
 ## How to run it
 
-Run `validate-refs.yml` manually in GitHub Actions.
+Set the repository Actions variable `FIXTURES_REPOSITORY`, configure the
+GitHub App credentials used for recursion into the companion repo, then run
+`validate-refs.yml` manually in GitHub Actions.
 
 The `targets-*.yml` workflows are the workflow files being scanned by the
 action under test. They do not need to be run for the scanner validation
 scenario.
+
+Required repository configuration:
+
+- Actions variable `FIXTURES_REPOSITORY`: `owner/repo` of the companion
+  fixtures repository, e.g.
+  `Wuodan/ensure-immutable-actions-test-custom-actions`. Fork or provide that
+  companion repository as well when extending this suite.
+- Actions variable `GH_APP_ID`: GitHub App ID``
+- Actions secret `GH_APP_PRIVATE_KEY`: private key for that GitHub App
+
+The GitHub App should be installed on the companion fixtures repository with
+`contents: read`.
 
 ## Expected behavior
 

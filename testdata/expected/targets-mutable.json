@@ -29,49 +29,49 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable.yml@main",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
-      "owner": "Wuodan",
+      "owner": "__FIXTURES_OWNER__",
       "ref": "87788a8bfd15d2098b295b8193e16019bf2e45db",
       "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
+      "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db"
     }
   ],
   "mutable-actions": [
     {
       "actionPath": ".github/actions/local-from-workflow",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable.yml@main",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
-      "owner": "Wuodan",
+      "owner": "__FIXTURES_OWNER__",
       "ref": "main",
       "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
+      "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-workflow@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-workflow@main"
     },
     {
       "actionPath": ".github/workflows/reusable.yml",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable.yml@main",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
-      "owner": "Wuodan",
+      "owner": "__FIXTURES_OWNER__",
       "ref": "main",
       "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
+      "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable.yml@main"
     },
     {
       "actionPath": "composite-actions/local-reusable-workflow-target",
@@ -79,44 +79,44 @@
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
-      "owner": "Wuodan",
+      "owner": "__FIXTURES_OWNER__",
       "ref": "main",
       "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
+      "repo": "__FIXTURES_REPO__",
       "sourceJobName": "local-reusable-workflow",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@main"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@main"
     },
     {
       "actionPath": "composite-actions/parent/child",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@main",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
-      "owner": "Wuodan",
+      "owner": "__FIXTURES_OWNER__",
       "ref": "main",
       "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
+      "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-composite-duplicate",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@main"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent/child@main"
     },
     {
       "actionPath": "composite-actions/parent",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@main",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
-      "owner": "Wuodan",
+      "owner": "__FIXTURES_OWNER__",
       "ref": "main",
       "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
+      "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-composite-duplicate",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent@main"
     }
   ],
   "unsupported-actions": [],
