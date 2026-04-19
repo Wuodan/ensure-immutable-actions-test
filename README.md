@@ -31,8 +31,8 @@ Required repository configuration:
   fixtures repository, e.g.
   `Wuodan/ensure-immutable-actions-test-custom-actions`. Fork or provide that
   companion repository as well when extending this suite.
-- Actions variable `GH_APP_ID`: GitHub App ID``
-- Actions secret `GH_APP_PRIVATE_KEY`: private key for that GitHub App
+- Actions variable `APP_ID`: GitHub App ID
+- Actions secret `APP_PRIVATE_KEY`: private key for that GitHub App
 
 The GitHub App should be installed on the companion fixtures repository with
 `contents: read`.
