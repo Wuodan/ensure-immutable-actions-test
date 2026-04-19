@@ -148,5 +148,8 @@
       "uses": "docker://alpine:3.20"
     }
   ],
-  "workflows-checked": ["targets-immutable.yml", "targets-unsupported.yml"]
+  "workflows-checked": [
+    "targets-immutable.yml",
+    "targets-unsupported.yml"
+  ]
 }

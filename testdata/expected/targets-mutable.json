@@ -120,5 +120,7 @@
     }
   ],
   "unsupported-actions": [],
-  "workflows-checked": ["targets-mutable.yml"]
+  "workflows-checked": [
+    "targets-mutable.yml"
+  ]
 }

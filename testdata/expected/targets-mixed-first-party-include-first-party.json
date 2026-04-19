@@ -108,5 +108,7 @@
     }
   ],
   "unsupported-actions": [],
-  "workflows-checked": ["targets-mixed-first-party.yml"]
+  "workflows-checked": [
+    "targets-mixed-first-party.yml"
+  ]
 }

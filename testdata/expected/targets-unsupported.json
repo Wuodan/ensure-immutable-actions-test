@@ -34,5 +34,7 @@
       "uses": "docker://alpine:3.20"
     }
   ],
-  "workflows-checked": ["targets-unsupported.yml"]
+  "workflows-checked": [
+    "targets-unsupported.yml"
+  ]
 }
