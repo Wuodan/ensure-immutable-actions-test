@@ -19,47 +19,47 @@ jobs:
         scenario:
           - name: targets-mutable.yml
             workflows: targets-mutable.yml
-            expected_file: .github/expected/targets-mutable.json
+            expected_file: testdata/expected/targets-mutable.json
             fail_on_mutable: false
             include_first_party: false
           - name: targets-immutable.yml
             workflows: targets-immutable.yml
-            expected_file: .github/expected/targets-immutable.json
+            expected_file: testdata/expected/targets-immutable.json
             fail_on_mutable: false
             include_first_party: false
           - name: targets-unsupported.yml
             workflows: targets-unsupported.yml
-            expected_file: .github/expected/targets-unsupported.json
+            expected_file: testdata/expected/targets-unsupported.json
             fail_on_mutable: false
             include_first_party: false
           - name: targets-first-party.yml include-first-party
             workflows: targets-first-party.yml
-            expected_file: .github/expected/targets-first-party-include-first-party.json
+            expected_file: testdata/expected/targets-first-party-include-first-party.json
             fail_on_mutable: false
             include_first_party: true
           - name: workflows glob selection
             workflows: targets-immut*.yml,targets-unsup*.yml
-            expected_file: .github/expected/workflows-glob-selection.json
+            expected_file: testdata/expected/workflows-glob-selection.json
             fail_on_mutable: false
             include_first_party: false
           - name: exclude-workflows selection
             exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml,targets-local-reusable-workflow-*.yml
-            expected_file: .github/expected/exclude-workflows-selection.json
+            expected_file: testdata/expected/exclude-workflows-selection.json
             fail_on_mutable: false
             include_first_party: false
           - name: invalid workflows input
             workflows: "[].yml"
-            expected_file: .github/expected/invalid-workflows-input.json
+            expected_file: testdata/expected/invalid-workflows-input.json
             fail_on_mutable: false
             include_first_party: false
           - name: exclude all workflows
             exclude_workflows: validate-refs.yml,targets-*.yml
-            expected_file: .github/expected/exclude-all-workflows.json
+            expected_file: testdata/expected/exclude-all-workflows.json
             fail_on_mutable: false
             include_first_party: false
           - name: targets-mixed-first-party.yml include-first-party
             workflows: targets-mixed-first-party.yml
-            expected_file: .github/expected/targets-mixed-first-party-include-first-party.json
+            expected_file: testdata/expected/targets-mixed-first-party-include-first-party.json
             fail_on_mutable: false
             include_first_party: true
 
