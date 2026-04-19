@@ -38,6 +38,6 @@ The mutable scenario should report the remote refs as mutable.
 
 The immutable scenario should report the same remote refs as immutable because
 they are pinned to the full commit SHA
-`db88ac462544346b5880f6c04a69486f72ce7173`.
+`3aa32f4195cfe2c317e08bf59720997b7cecf3b7`.
 
 The unsupported scenario should report `docker://alpine:3.20` as unsupported.

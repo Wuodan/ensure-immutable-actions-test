@@ -5,6 +5,21 @@
   ],
   "mutable-actions": [
     {
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-workflow@main",
+      "owner": "Wuodan",
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "actionPath": ".github/actions/local-from-workflow",
+      "ref": "main",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "isFirstParty": false,
+      "immutable": false,
+      "releaseFound": false,
+      "message": "No release found for this reference"
+    },
+    {
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
       "owner": "Wuodan",
       "repo": "ensure-immutable-actions-test-custom-actions",
@@ -26,7 +41,7 @@
       "ref": "main",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "sourceJobName": "remote-composite",
+      "sourceJobName": "remote-composite-duplicate",
       "sourceStepName": "unnamed step",
       "isFirstParty": false,
       "immutable": false,
