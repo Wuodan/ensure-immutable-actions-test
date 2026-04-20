@@ -3,13 +3,83 @@ name: Validate Refs
 on:
   workflow_dispatch:
     inputs:
+      repository:
+        description: 'Action repository to test'
+        required: false
+        default: 'joshjohanning/ensure-immutable-actions'
+        type: string
+      ref:
+        description: 'Action ref to test (branch, tag, or SHA)'
+        required: false
+        default: 'main'
+        type: string
+      pr:
+        description: 'PR number to test (overrides ref if set)'
+        required: false
+        type: string
+      fixtures_repository:
+        description: 'Fixtures repository to use for the companion workflows and actions'
+        required: false
+        default: 'Wuodan/ensure-immutable-actions-test-custom-actions'
+        type: string
       skip_output_assertions:
         description: 'Skip hardcoded output assertions and only run the validation workflows'
         required: false
         default: false
         type: boolean
 
+run-name: "Validate Refs: ${{ inputs.pr && format('PR #{0}', inputs.pr) || format('{0}@{1}', inputs.repository, inputs.ref) }}"
+
 jobs:
+  resolve-ref:
+    runs-on: ubuntu-latest
+    outputs:
+      repository: ${{ steps.resolve.outputs.repository }}
+      ref: ${{ steps.resolve.outputs.ref }}
+      display: ${{ steps.resolve.outputs.display }}
+
+    steps:
+      - name: Resolve action ref
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -n "${{ inputs.pr }}" ]]; then
+            repository="$(gh pr view "${{ inputs.pr }}" --repo "${{ inputs.repository }}" --json headRepository -q .headRepository.nameWithOwner)"
+            ref="$(gh pr view "${{ inputs.pr }}" --repo "${{ inputs.repository }}" --json headRefName -q .headRefName)"
+            display="PR #${{ inputs.pr }} (${repository}@${ref})"
+          else
+            repository="${{ inputs.repository }}"
+            ref="${{ inputs.ref }}"
+            display="${repository}@${ref}"
+          fi
+
+          {
+            echo "repository=$repository"
+            echo "ref=$ref"
+            echo "display=$display"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Write job summary
+        shell: bash
+        run: |
+          {
+            echo "## Validation Configuration"
+            echo
+            echo "| Setting | Value |"
+            echo "|---|---|"
+            echo "| Action repo | \`${{ steps.resolve.outputs.repository }}\` |"
+            echo "| Action ref | \`${{ steps.resolve.outputs.ref }}\` |"
+            if [[ -n "${{ inputs.pr }}" ]]; then
+              echo "| PR | [#${{ inputs.pr }}](https://github.com/${{ inputs.repository }}/pull/${{ inputs.pr }}) |"
+            fi
+            echo "| Fixtures repo | \`${{ inputs.fixtures_repository }}\` |"
+            echo "| Skip output assertions | \`${{ inputs.skip_output_assertions }}\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
   lint:
     runs-on: ubuntu-latest
     permissions:
@@ -24,7 +94,7 @@ jobs:
       - name: Render repository-specific fixtures
         id: fixtures
         env:
-          FIXTURES_REPOSITORY: ${{ vars.FIXTURES_REPOSITORY }}
+          FIXTURES_REPOSITORY: ${{ inputs.fixtures_repository }}
         shell: bash
         run: ./scripts/render-fixtures.sh
 
@@ -50,6 +120,7 @@ jobs:
 
   validate:
     name: validate (${{ matrix.scenario.name }})
+    needs: resolve-ref
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -104,10 +175,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout action under test
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ needs.resolve-ref.outputs.repository }}
+          ref: ${{ needs.resolve-ref.outputs.ref }}
+          path: action
+
       - name: Render repository-specific fixtures
         id: fixtures
         env:
-          FIXTURES_REPOSITORY: ${{ vars.FIXTURES_REPOSITORY }}
+          FIXTURES_REPOSITORY: ${{ inputs.fixtures_repository }}
         shell: bash
         run: ./scripts/render-fixtures.sh
 
@@ -120,9 +198,22 @@ jobs:
           owner: ${{ steps.fixtures.outputs.owner }}
           repositories: ${{ steps.fixtures.outputs.repo }}
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: action/package-lock.json
+
+      - name: Build action under test
+        working-directory: action
+        run: |
+          npm ci --ignore-scripts
+          npm run package
+
       - name: Run ensure-immutable-actions
         id: scan
-        uses: Wuodan/ensure-immutable-actions@v2.5.2-pr.1
+        uses: ./action
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           workflows: ${{ matrix.scenario.workflows }}
@@ -166,15 +257,23 @@ jobs:
           diff -u expected.json actual.json
 
   validate-fail-on-mutable:
+    needs: resolve-ref
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout action under test
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ needs.resolve-ref.outputs.repository }}
+          ref: ${{ needs.resolve-ref.outputs.ref }}
+          path: action
+
       - name: Render repository-specific fixtures
         id: fixtures
         env:
-          FIXTURES_REPOSITORY: ${{ vars.FIXTURES_REPOSITORY }}
+          FIXTURES_REPOSITORY: ${{ inputs.fixtures_repository }}
         shell: bash
         run: ./scripts/render-fixtures.sh
 
@@ -187,10 +286,23 @@ jobs:
           owner: ${{ steps.fixtures.outputs.owner }}
           repositories: ${{ steps.fixtures.outputs.repo }}
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: action/package-lock.json
+
+      - name: Build action under test
+        working-directory: action
+        run: |
+          npm ci --ignore-scripts
+          npm run package
+
       - name: Run ensure-immutable-actions with fail-on-mutable enabled
         id: scan
         continue-on-error: true
-        uses: Wuodan/ensure-immutable-actions@v2.5.2-pr.1
+        uses: ./action
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           workflows: targets-mutable.yml

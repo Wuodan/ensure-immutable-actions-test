@@ -17,9 +17,26 @@ This repository is a caller/workflow-under-test for manual validation of
 
 ## How to run it
 
-Set the repository Actions variable `FIXTURES_REPOSITORY`, configure the
-GitHub App credentials used for recursion into the companion repo, then run
-`validate-refs.yml` manually in GitHub Actions.
+Configure the GitHub App credentials used for recursion into the companion
+repo, then run `validate-refs.yml` manually in GitHub Actions.
+
+The workflow accepts these manual dispatch inputs:
+
+- `repository`: action repository to test, defaults to
+  `joshjohanning/ensure-immutable-actions`
+- `ref`: branch, tag, or SHA to test, defaults to `main`
+- `pr`: PR number to test, which overrides `ref`
+- `fixtures_repository`: companion fixtures repository, defaults to
+  `Wuodan/ensure-immutable-actions-test-custom-actions`
+- `skip_output_assertions`: skip hardcoded output assertions and only run the
+  validation workflows
+
+Examples:
+
+- test the default branch of the default action repo: leave the defaults
+- test a branch from your fork: set `repository` to your fork and `ref` to the
+  branch name
+- test a PR: set `repository` to the base action repo and set `pr`
 
 The `targets-*.yml` workflows are the workflow files being scanned by the
 action under test. They do not need to be run for the scanner validation
@@ -27,12 +44,12 @@ scenario.
 
 Required repository configuration:
 
-- Actions variable `FIXTURES_REPOSITORY`: `owner/repo` of the companion
-  fixtures repository, e.g.
-  `Wuodan/ensure-immutable-actions-test-custom-actions`. Fork or provide that
-  companion repository as well when extending this suite.
 - Actions variable `APP_ID`: GitHub App ID
 - Actions secret `APP_PRIVATE_KEY`: private key for that GitHub App
+
+Override `fixtures_repository` when dispatching the workflow if you want to use
+your own companion repo. Fork or provide that companion repository as well when
+extending this suite.
 
 The GitHub App should be installed on the companion fixtures repository with
 `contents: read`.

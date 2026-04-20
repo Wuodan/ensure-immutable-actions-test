@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [[ -z "${FIXTURES_REPOSITORY:-}" ]]; then
-  echo "Repository variable FIXTURES_REPOSITORY is required, e.g. ${GITHUB_REPOSITORY}-custom-actions" >&2
+  echo "FIXTURES_REPOSITORY is required, e.g. owner/ensure-immutable-actions-test-custom-actions" >&2
   exit 1
 fi
 
