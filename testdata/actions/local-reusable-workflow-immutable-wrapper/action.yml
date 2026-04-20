@@ -1,0 +1,6 @@
+name: Local Reusable Workflow Immutable Wrapper
+
+runs:
+  using: composite
+  steps:
+    - uses: __FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@e33e5680483b49d17eab65de15b068edfbd2474b

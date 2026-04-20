@@ -60,15 +60,14 @@ The action under test should recurse into:
 
 - remote composite actions
 - nested remote composite actions via `./...`
-- remote reusable workflows
-- local `./...` references inside reusable workflows using this caller repo's
-  workspace
-- nested local reusable workflow references that recurse again via `./...`
+- remote reusable workflows, both mutable and immutable fixture paths
+- nested reusable workflows referenced from remote reusable workflows
+- local actions
+- local reusable workflows
 
 The mutable scenario should report the remote refs as mutable.
 
 The immutable scenario should report the same remote refs as immutable because
-they are pinned to the full commit SHA
-`3aa32f4195cfe2c317e08bf59720997b7cecf3b7`.
+they are pinned to full commit SHAs.
 
 The unsupported scenario should report `docker://alpine:3.20` as unsupported.

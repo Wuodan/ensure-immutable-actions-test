@@ -17,9 +17,11 @@ if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
   } >> "$GITHUB_OUTPUT"
 fi
 
+mkdir -p .github/actions
 cp testdata/workflows/targets-*.yml .github/workflows/
+cp -R testdata/actions/. .github/actions/
 
-for path in .github/workflows/targets-*.yml testdata/expected/*.json; do
+for path in .github/workflows/targets-*.yml .github/actions/*/action.yml testdata/expected/*.json; do
   sed -i \
     -e "s|__FIXTURES_REPOSITORY__|$FIXTURES_REPOSITORY|g" \
     -e "s|__FIXTURES_OWNER__|$FIXTURES_OWNER|g" \

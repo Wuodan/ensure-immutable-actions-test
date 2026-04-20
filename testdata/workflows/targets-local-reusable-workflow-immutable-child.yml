@@ -7,4 +7,4 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: __FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@e33e5680483b49d17eab65de15b068edfbd2474b
+      - uses: ./.github/actions/local-reusable-workflow-immutable-wrapper
