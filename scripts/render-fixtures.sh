@@ -18,7 +18,7 @@ if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
 fi
 
 mkdir -p .github/actions
-cp testdata/workflows/targets-*.yml .github/workflows/
+cp testdata/workflows/*.yml .github/workflows/
 cp -R testdata/actions/. .github/actions/
 
 for path in .github/workflows/targets-*.yml .github/actions/*/action.yml testdata/expected/*.json; do

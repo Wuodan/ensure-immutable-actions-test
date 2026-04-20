@@ -1,0 +1,8 @@
+name: Excluded Nested Local Parent
+
+on:
+  workflow_call:
+
+jobs:
+  nested:
+    uses: ./.github/workflows/excluded-nested-local-child.yml

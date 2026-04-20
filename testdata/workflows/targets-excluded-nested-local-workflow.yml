@@ -1,0 +1,8 @@
+name: Targets Excluded Nested Local Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  nested:
+    uses: ./.github/workflows/excluded-nested-local-parent.yml
