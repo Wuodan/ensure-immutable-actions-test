@@ -90,7 +90,7 @@
       "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-workflow@main"
     },
     {
-      "actionPath": ".github/actions/nested-from-workflow",
+      "actionPath": ".github/actions/local-from-nested-workflow",
       "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
       "immutable": false,
       "isFirstParty": false,
@@ -102,7 +102,7 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/nested-from-workflow@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-nested-workflow@main"
     },
     {
       "actionPath": ".github/actions/nested-leaf",
