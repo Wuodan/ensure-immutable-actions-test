@@ -235,24 +235,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Sort array-valued outputs so ordering differences do not fail the comparison.
-          MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
-          IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
-          UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
-          FIRST_PARTY_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$FIRST_PARTY_ACTIONS")"
+          normalize_json() {
+            jq '
+              .["mutable-actions"] |= sort_by(.uses) |
+              .["immutable-actions"] |= sort_by(.uses) |
+              .["unsupported-actions"] |= sort_by(.uses) |
+              .["first-party-actions"] |= sort_by(.uses)
+            ' | jq -S .
+          }
 
-          cat <<EOF | jq -S . > actual.json
+          cat <<EOF | normalize_json > actual.json
           {
             "all-passed": $ALL_PASSED,
             "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
-            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED,
-            "first-party-actions": $FIRST_PARTY_ACTIONS_SORTED
+            "mutable-actions": $MUTABLE_ACTIONS,
+            "immutable-actions": $IMMUTABLE_ACTIONS,
+            "unsupported-actions": $UNSUPPORTED_ACTIONS,
+            "first-party-actions": $FIRST_PARTY_ACTIONS
           }
           EOF
 
-          jq -S . "$EXPECTED_FILE" > expected.json
+          normalize_json <"$EXPECTED_FILE" > expected.json
 
           diff -u expected.json actual.json
 
