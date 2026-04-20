@@ -7,7 +7,7 @@ jobs:
   remote-composite:
     runs-on: ubuntu-latest
     steps:
-      - uses: __FIXTURES_REPOSITORY__/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7
+      - uses: __FIXTURES_REPOSITORY__/composite-actions/parent@8f68d9f5083d7de4eba454814778038f7ed72f6e
 
   remote-reusable:
     uses: __FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8

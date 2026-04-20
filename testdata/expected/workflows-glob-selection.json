@@ -205,33 +205,33 @@
     },
     {
       "actionPath": "composite-actions/parent/child",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
       "owner": "__FIXTURES_OWNER__",
-      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "ref": "8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "releaseFound": false,
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-composite",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent/child@3aa32f4195cfe2c317e08bf59720997b7cecf3b7"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent/child@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": "composite-actions/parent",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
       "owner": "__FIXTURES_OWNER__",
-      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "ref": "8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "releaseFound": false,
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-composite",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     }
   ],
   "mutable-actions": [],
