@@ -31,7 +31,7 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -46,7 +46,7 @@
     },
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",

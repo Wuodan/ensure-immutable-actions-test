@@ -151,11 +151,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Sort array-valued outputs so ordering differences do not fail the comparison.
-          MUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$MUTABLE_ACTIONS")"
-          IMMUTABLE_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$IMMUTABLE_ACTIONS")"
-          UNSUPPORTED_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$UNSUPPORTED_ACTIONS")"
-          FIRST_PARTY_ACTIONS_SORTED="$(jq 'sort_by(.uses)' <<<"$FIRST_PARTY_ACTIONS")"
+          # Sort array-valued outputs by a stable key before fixture-ref normalization.
+          ACTION_SORT_FILTER='
+            sort_by(
+              .uses,
+              (.entrypointUses // ""),
+              (.ref // ""),
+              (.sourceWorkflowFile // ""),
+              (.sourceJobName // ""),
+              (.sourceStepName // ""),
+              (.workflowFile // ""),
+              (.jobName // ""),
+              (.stepName // ""),
+              (.actionPath // ""),
+              (.message // "")
+            )
+          '
+          MUTABLE_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$MUTABLE_ACTIONS")"
+          IMMUTABLE_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$IMMUTABLE_ACTIONS")"
+          UNSUPPORTED_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$UNSUPPORTED_ACTIONS")"
+          FIRST_PARTY_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$FIRST_PARTY_ACTIONS")"
 
           cat <<EOF | jq -S . > actual.json
           {
@@ -168,10 +183,9 @@ jobs:
           }
           EOF
 
-          node ./scripts/normalize-fixture-refs.mjs "$EXPECTED_FILE" > expected.normalized.json
           node ./scripts/normalize-fixture-refs.mjs actual.json > actual.normalized.json
 
-          diff -u expected.normalized.json actual.normalized.json
+          diff -u "$EXPECTED_FILE" actual.normalized.json
 
   validate-fail-on-mutable:
     needs: summarize-config
