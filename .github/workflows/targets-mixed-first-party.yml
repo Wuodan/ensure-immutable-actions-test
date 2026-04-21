@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7

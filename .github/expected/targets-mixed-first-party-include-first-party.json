@@ -31,7 +31,7 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -42,13 +42,13 @@
       "sourceJobName": "mixed",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mixed-first-party.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db"
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7"
     }
   ],
   "mutable-actions": [
     {
       "actionPath": "composite-actions/parent/child",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -59,11 +59,11 @@
       "sourceJobName": "mixed",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mixed-first-party.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@main"
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@baseline/upstream-99004139"
     },
     {
       "actionPath": "composite-actions/parent",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -74,11 +74,11 @@
       "sourceJobName": "mixed",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mixed-first-party.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main"
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139"
     },
     {
       "actionPath": "",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
       "immutable": false,
       "isFirstParty": true,
       "message": "No release found for this reference",
@@ -93,7 +93,7 @@
     },
     {
       "actionPath": "",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139",
       "immutable": false,
       "isFirstParty": true,
       "message": "No release found for this reference",
