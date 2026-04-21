@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@upstream-PR/fix-recurse-into-local-reusable-workflows
 
   remote-composite-duplicate:
     runs-on: ubuntu-latest
     steps:
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@upstream-PR/fix-recurse-into-local-reusable-workflows
 
   remote-reusable:
-    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main
+    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@upstream-PR/fix-recurse-into-local-reusable-workflows
 
   local-reusable-workflow:
     uses: ./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml

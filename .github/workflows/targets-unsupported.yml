@@ -12,4 +12,4 @@ jobs:
   remote-composite:
     runs-on: ubuntu-latest
     steps:
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@3aa32f4195cfe2c317e08bf59720997b7cecf3b7

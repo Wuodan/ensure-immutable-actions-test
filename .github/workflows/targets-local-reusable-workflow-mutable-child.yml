@@ -7,4 +7,4 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@main
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@upstream-PR/fix-recurse-into-local-reusable-workflows
