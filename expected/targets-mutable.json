@@ -29,7 +29,7 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@__FIXTURE_MUTABLE_REF__",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -45,8 +45,53 @@
   ],
   "mutable-actions": [
     {
+      "actionPath": ".github/actions/local-from-local-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-local-workflow@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/actions/local-from-nested-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-nested-workflow@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/actions/local-from-remote-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-remote-workflow@__FIXTURE_MUTABLE_REF__"
+    },
+    {
       "actionPath": ".github/actions/local-from-workflow",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@__FIXTURE_MUTABLE_REF__",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -60,8 +105,23 @@
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/local-from-workflow@__FIXTURE_MUTABLE_REF__"
     },
     {
-      "actionPath": ".github/workflows/reusable.yml",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@__FIXTURE_MUTABLE_REF__",
+      "actionPath": ".github/actions/nested-leaf",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/actions/nested-leaf@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/nested-local-child.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -71,7 +131,64 @@
       "repo": "ensure-immutable-actions-test-custom-actions",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@__FIXTURE_MUTABLE_REF__"
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/nested-local-child.yml@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/nested-mutable.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/nested-mutable.yml@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/nested-remote-child.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/nested-remote-child.yml@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/reusable-mutable.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/local-reusable-workflow-target",
+      "entrypointUses": "./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "local-reusable-workflow",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@__FIXTURE_MUTABLE_REF__"
     },
     {
       "actionPath": "composite-actions/parent",
@@ -104,20 +221,7 @@
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@__FIXTURE_MUTABLE_REF__"
     }
   ],
-  "unsupported-actions": [
-    {
-      "message": "Unsupported local action: action.yml not found",
-      "sourceLocations": [
-        {
-          "jobName": "local-reusable-workflow",
-          "workflowFile": "targets-mutable.yml"
-        }
-      ],
-      "supported": false,
-      "unsupportedType": "local-action",
-      "uses": "./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml"
-    }
-  ],
+  "unsupported-actions": [],
   "workflows-checked": [
     "targets-mutable.yml"
   ]

@@ -16,7 +16,7 @@ jobs:
       - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139
 
   remote-reusable:
-    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@baseline/upstream-99004139
+    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable-mutable.yml@baseline/upstream-99004139
 
   local-reusable-workflow:
     uses: ./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml
