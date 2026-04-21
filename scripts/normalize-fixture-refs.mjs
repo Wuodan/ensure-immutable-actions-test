@@ -102,20 +102,10 @@ function actionKey(action) {
   ].join('\u0000');
 }
 
-function compareStrings(a, b) {
-  if (a < b) {
-    return -1;
-  }
-  if (a > b) {
-    return 1;
-  }
-  return 0;
-}
-
 const parsed = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
 for (const key of ['mutable-actions', 'immutable-actions', 'unsupported-actions', 'first-party-actions']) {
   if (Array.isArray(parsed[key])) {
-    parsed[key].sort((a, b) => compareStrings(actionKey(a), actionKey(b)));
+    parsed[key].sort((a, b) => actionKey(a).localeCompare(actionKey(b)));
   }
 }
 const normalized = normalizeValue(parsed, null);
