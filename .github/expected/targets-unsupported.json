@@ -6,12 +6,12 @@
   "mutable-actions": [],
   "immutable-actions": [
     {
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@db88ac462544346b5880f6c04a69486f72ce7173",
       "owner": "Wuodan",
       "repo": "ensure-immutable-actions-test-custom-actions",
       "actionPath": "composite-actions/docker-unsupported",
       "ref": "64b6290f8d6f3adef61136543f43c6607d5b301e",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@db88ac462544346b5880f6c04a69486f72ce7173",
       "sourceWorkflowFile": "targets-unsupported.yml",
       "sourceJobName": "remote-composite",
       "sourceStepName": "unnamed step",
