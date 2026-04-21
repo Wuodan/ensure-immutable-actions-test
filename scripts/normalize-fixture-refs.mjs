@@ -82,6 +82,31 @@ function normalizeValue(value, currentRepo) {
   return normalized;
 }
 
+function stringKey(value) {
+  return typeof value === 'string' ? value : '';
+}
+
+function actionKey(action) {
+  return [
+    stringKey(action?.uses),
+    stringKey(action?.entrypointUses),
+    stringKey(action?.ref),
+    stringKey(action?.sourceWorkflowFile),
+    stringKey(action?.sourceJobName),
+    stringKey(action?.sourceStepName),
+    stringKey(action?.workflowFile),
+    stringKey(action?.jobName),
+    stringKey(action?.stepName),
+    stringKey(action?.actionPath),
+    stringKey(action?.message)
+  ].join('\u0000');
+}
+
 const parsed = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
+for (const key of ['mutable-actions', 'immutable-actions', 'unsupported-actions', 'first-party-actions']) {
+  if (Array.isArray(parsed[key])) {
+    parsed[key].sort((a, b) => actionKey(a).localeCompare(actionKey(b)));
+  }
+}
 const normalized = normalizeValue(parsed, null);
 process.stdout.write(`${JSON.stringify(normalized, null, 2)}\n`);

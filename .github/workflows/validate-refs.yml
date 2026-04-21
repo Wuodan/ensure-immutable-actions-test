@@ -151,35 +151,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Sort array-valued outputs by a stable key before fixture-ref normalization.
-          ACTION_SORT_FILTER='
-            sort_by(
-              .uses,
-              (.entrypointUses // ""),
-              (.ref // ""),
-              (.sourceWorkflowFile // ""),
-              (.sourceJobName // ""),
-              (.sourceStepName // ""),
-              (.workflowFile // ""),
-              (.jobName // ""),
-              (.stepName // ""),
-              (.actionPath // ""),
-              (.message // "")
-            )
-          '
-          MUTABLE_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$MUTABLE_ACTIONS")"
-          IMMUTABLE_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$IMMUTABLE_ACTIONS")"
-          UNSUPPORTED_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$UNSUPPORTED_ACTIONS")"
-          FIRST_PARTY_ACTIONS_SORTED="$(jq "$ACTION_SORT_FILTER" <<<"$FIRST_PARTY_ACTIONS")"
-
           cat <<EOF | jq -S . > actual.json
           {
             "all-passed": $ALL_PASSED,
             "workflows-checked": $WORKFLOWS_CHECKED,
-            "mutable-actions": $MUTABLE_ACTIONS_SORTED,
-            "immutable-actions": $IMMUTABLE_ACTIONS_SORTED,
-            "unsupported-actions": $UNSUPPORTED_ACTIONS_SORTED,
-            "first-party-actions": $FIRST_PARTY_ACTIONS_SORTED
+            "mutable-actions": $MUTABLE_ACTIONS,
+            "immutable-actions": $IMMUTABLE_ACTIONS,
+            "unsupported-actions": $UNSUPPORTED_ACTIONS,
+            "first-party-actions": $FIRST_PARTY_ACTIONS
           }
           EOF
 
