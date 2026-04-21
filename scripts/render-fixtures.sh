@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Apply the selected fixtures repository and branch to the target workflows.
+# For immutable top-level fixture refs, use the current tip SHA of that branch.
+# Expected JSON keeps placeholders and is not resolved here.
+
 if [[ -z "${FIXTURES_REPOSITORY:-}" ]]; then
   echo "FIXTURES_REPOSITORY is required, e.g. owner/ensure-immutable-actions-test-custom-actions" >&2
   exit 1
@@ -47,8 +51,6 @@ sed -E -i \
   -e "s|Wuodan/ensure-immutable-actions-test-custom-actions|$FIXTURES_REPOSITORY|g" \
   -e "s|\"owner\": \"Wuodan\"|\"owner\": \"$FIXTURES_OWNER\"|g" \
   -e "s|\"repo\": \"ensure-immutable-actions-test-custom-actions\"|\"repo\": \"$FIXTURES_REPO\"|g" \
-  -e "s|__FIXTURES_BRANCH__|$FIXTURES_BRANCH|g" \
-  -e "s|__FIXTURES_SHA__|$FIXTURES_SHA|g" \
   "${expected_files[@]}"
 
 sed -E -i \

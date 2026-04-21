@@ -61,3 +61,22 @@ Rule of thumb:
 2. if needed, add a follow-up commit that updates pinned self-SHAs there
 3. update expected outputs in this repository to match the resulting fixture
    graph
+
+## Snapshot Placeholders
+
+Expected JSON in this repository does not hard-code literal fixture branch
+names or fixture SHAs.
+
+Instead it uses:
+
+- `__FIXTURE_MUTABLE_REF__`
+- `__FIXTURE_IMMUTABLE_REF__`
+
+The workflow does two things:
+
+- `scripts/render-fixtures.sh` rewrites the target workflows for the selected
+  `fixtures_repository` and `fixtures_branch`
+- `scripts/normalize-fixture-refs.sh` rewrites fixture refs in JSON before
+  comparing actual and expected output
+
+This keeps the snapshots stable when fixture branch names or SHAs change.

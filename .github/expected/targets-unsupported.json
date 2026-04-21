@@ -4,18 +4,18 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/docker-unsupported",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@__FIXTURE_IMMUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
       "owner": "Wuodan",
-      "ref": "64b6290f8d6f3adef61136543f43c6607d5b301e",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
       "releaseFound": false,
       "repo": "ensure-immutable-actions-test-custom-actions",
       "sourceJobName": "remote-composite",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-unsupported.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@3aa32f4195cfe2c317e08bf59720997b7cecf3b7"
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/docker-unsupported@__FIXTURE_IMMUTABLE_REF__"
     }
   ],
   "mutable-actions": [],

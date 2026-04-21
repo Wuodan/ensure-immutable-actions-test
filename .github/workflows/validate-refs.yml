@@ -140,6 +140,9 @@ jobs:
         env:
           SCENARIO_NAME: ${{ matrix.scenario.name }}
           EXPECTED_FILE: ${{ matrix.scenario.expected_file }}
+          FIXTURES_REPOSITORY: ${{ steps.fixtures.outputs.repository }}
+          FIXTURES_OWNER: ${{ steps.fixtures.outputs.owner }}
+          FIXTURES_REPO: ${{ steps.fixtures.outputs.repo }}
           ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
           WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
           MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
@@ -166,7 +169,10 @@ jobs:
           }
           EOF
 
-          diff -u "$EXPECTED_FILE" actual.json
+          ./scripts/normalize-fixture-refs.sh "$EXPECTED_FILE" > expected.normalized.json
+          ./scripts/normalize-fixture-refs.sh actual.json > actual.normalized.json
+
+          diff -u expected.normalized.json actual.normalized.json
 
   validate-fail-on-mutable:
     needs: summarize-config
