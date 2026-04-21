@@ -31,12 +31,27 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/leaf",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@baseline/upstream-99004139",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7"
+    },
+    {
+      "actionPath": "composite-actions/leaf",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
       "owner": "Wuodan",
-      "ref": "87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "ref": "3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
       "releaseFound": false,
       "repo": "ensure-immutable-actions-test-custom-actions",
       "sourceJobName": "mixed",
