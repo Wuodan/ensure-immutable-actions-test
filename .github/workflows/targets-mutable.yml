@@ -16,7 +16,7 @@ jobs:
       - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURES_BRANCH__
 
   remote-reusable:
-    uses: Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@__FIXTURES_BRANCH__
+    uses: Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-mutable.yml@__FIXTURES_BRANCH__
 
   local-reusable-workflow:
     uses: ./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml

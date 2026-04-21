@@ -1,5 +1,5 @@
 {
-  "all-passed": false,
+  "all-passed": true,
   "first-party-actions": [
     {
       "allowed": true,
@@ -28,8 +28,53 @@
   ],
   "immutable-actions": [
     {
+      "actionPath": ".github/actions/local-from-local-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/actions/local-from-local-workflow@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/actions/local-from-nested-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/actions/local-from-nested-workflow@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/actions/local-from-remote-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/actions/local-from-remote-workflow@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
       "actionPath": ".github/actions/local-from-workflow",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -43,8 +88,8 @@
       "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/actions/local-from-workflow@__FIXTURE_IMMUTABLE_REF__"
     },
     {
-      "actionPath": ".github/workflows/reusable.yml",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "actionPath": ".github/workflows/nested-immutable.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -54,11 +99,53 @@
       "repo": "ensure-immutable-actions-test-fixtures",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@__FIXTURE_IMMUTABLE_REF__"
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/nested-immutable.yml@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/nested-local-child.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/nested-local-child.yml@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/nested-remote-child.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/nested-remote-child.yml@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/reusable-immutable.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__"
     },
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@__FIXTURE_IMMUTABLE_REF__",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable-immutable.yml@__FIXTURE_IMMUTABLE_REF__",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -103,21 +190,9 @@
     }
   ],
   "mutable-actions": [],
-  "unsupported-actions": [
-    {
-      "message": "Unsupported local action: action.yml not found",
-      "sourceLocations": [
-        {
-          "jobName": "local-reusable-workflow",
-          "workflowFile": "targets-immutable.yml"
-        }
-      ],
-      "supported": false,
-      "unsupportedType": "local-action",
-      "uses": "./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml"
-    }
-  ],
+  "unsupported-actions": [],
   "workflows-checked": [
+    "targets-excluded-nested-local-workflow.yml",
     "targets-immutable.yml"
   ]
 }
