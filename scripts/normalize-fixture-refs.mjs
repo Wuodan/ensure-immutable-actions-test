@@ -5,14 +5,14 @@
 // Full-SHA fixture refs become __FIXTURE_IMMUTABLE_REF__.
 // This keeps expected JSON stable when fixture branch names or SHAs change.
 
-const fs = require('fs');
+import fs from 'node:fs';
 
 const inputFile = process.argv[2];
 const fixturesRepository = process.env.FIXTURES_REPOSITORY;
 const fixturesRepo = process.env.FIXTURES_REPO;
 
 if (!inputFile) {
-  console.error('usage: normalize-fixture-refs.js <json-file>');
+  console.error('usage: normalize-fixture-refs.mjs <json-file>');
   process.exit(1);
 }
 

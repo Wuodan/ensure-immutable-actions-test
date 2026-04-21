@@ -76,7 +76,7 @@ The workflow does two things:
 
 - `scripts/render-fixtures.sh` rewrites the target workflows for the selected
   `fixtures_repository` and `fixtures_branch`
-- `scripts/normalize-fixture-refs.js` rewrites fixture refs in JSON before
+- `scripts/normalize-fixture-refs.mjs` rewrites fixture refs in JSON before
   comparing actual and expected output
 
 This keeps the snapshots stable when fixture branch names or SHAs change.
