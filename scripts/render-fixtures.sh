@@ -40,7 +40,7 @@ workflow_files=(
 )
 
 expected_files=(
-  .github/expected/*.json
+  expected/*.json
 )
 
 sed -E -i \
