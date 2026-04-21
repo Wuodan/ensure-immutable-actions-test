@@ -31,23 +31,32 @@ if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
   } >> "$GITHUB_OUTPUT"
 fi
 
-target_files=(
+workflow_files=(
   .github/workflows/targets-*.yml
+)
+
+expected_files=(
   .github/expected/*.json
 )
 
 sed -E -i \
   -e "s|Wuodan/ensure-immutable-actions-test-custom-actions|$FIXTURES_REPOSITORY|g" \
+  "${workflow_files[@]}"
+
+sed -E -i \
+  -e "s|Wuodan/ensure-immutable-actions-test-custom-actions|$FIXTURES_REPOSITORY|g" \
   -e "s|\"owner\": \"Wuodan\"|\"owner\": \"$FIXTURES_OWNER\"|g" \
   -e "s|\"repo\": \"ensure-immutable-actions-test-custom-actions\"|\"repo\": \"$FIXTURES_REPO\"|g" \
-  "${target_files[@]}"
+  -e "s|__FIXTURES_BRANCH__|$FIXTURES_BRANCH|g" \
+  -e "s|__FIXTURES_SHA__|$FIXTURES_SHA|g" \
+  "${expected_files[@]}"
 
 sed -E -i \
   -e "s|@baseline/upstream-99004139|@$FIXTURES_BRANCH|g" \
-  -e "s|\"ref\": \"main\"|\"ref\": \"$FIXTURES_BRANCH\"|g" \
-  "${target_files[@]}"
+  -e "s|@__FIXTURES_BRANCH__|@$FIXTURES_BRANCH|g" \
+  "${workflow_files[@]}"
 
 sed -E -i \
   -e "s|(${FIXTURES_REPOSITORY//\//\\/}[^\"[:space:]@]+)@[0-9a-f]{40}|\\1@$FIXTURES_SHA|g" \
-  -e "s|\"ref\": \"[0-9a-f]{40}\"|\"ref\": \"$FIXTURES_SHA\"|g" \
-  "${target_files[@]}"
+  -e "s|(${FIXTURES_REPOSITORY//\//\\/}[^\"[:space:]@]+)@__FIXTURES_SHA__|\\1@$FIXTURES_SHA|g" \
+  "${workflow_files[@]}"
