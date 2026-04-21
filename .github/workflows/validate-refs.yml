@@ -168,8 +168,8 @@ jobs:
           }
           EOF
 
-          ./scripts/normalize-fixture-refs.sh "$EXPECTED_FILE" > expected.normalized.json
-          ./scripts/normalize-fixture-refs.sh actual.json > actual.normalized.json
+          node ./scripts/normalize-fixture-refs.js "$EXPECTED_FILE" > expected.normalized.json
+          node ./scripts/normalize-fixture-refs.js actual.json > actual.normalized.json
 
           diff -u expected.normalized.json actual.normalized.json
 
