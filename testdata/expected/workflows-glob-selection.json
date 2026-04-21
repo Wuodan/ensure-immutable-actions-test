@@ -29,7 +29,7 @@
   "immutable-actions": [
     {
       "actionPath": ".github/actions/local-from-local-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -40,11 +40,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-local-workflow@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-local-workflow@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/actions/local-from-nested-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -55,11 +55,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-nested-workflow@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-nested-workflow@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/actions/local-from-remote-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -70,11 +70,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-remote-workflow@fef39dbbd03e7b1cb14be0e58dc6c05b1be56bdb"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-remote-workflow@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/actions/local-from-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -85,11 +85,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-workflow@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-workflow@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/actions/nested-leaf",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -100,11 +100,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/nested-leaf@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/nested-leaf@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/workflows/nested-immutable.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -114,11 +114,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/workflows/nested-local-child.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -128,11 +128,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-local-child.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-local-child.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/workflows/nested-remote-child.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -142,11 +142,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-remote-child.yml@fef39dbbd03e7b1cb14be0e58dc6c05b1be56bdb"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-remote-child.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": ".github/workflows/reusable-immutable.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -156,11 +156,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": "composite-actions/docker-unsupported",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/docker-unsupported@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -171,11 +171,11 @@
       "sourceJobName": "remote-composite",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-unsupported.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/docker-unsupported@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@b6c07a304a2bafccc303b5991535f3a808ec72f8",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-immutable.yml@8f68d9f5083d7de4eba454814778038f7ed72f6e",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -186,7 +186,7 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/leaf@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": "composite-actions/local-reusable-workflow-target",
@@ -201,7 +201,7 @@
       "sourceJobName": "local-reusable-workflow",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@e33e5680483b49d17eab65de15b068edfbd2474b"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     },
     {
       "actionPath": "composite-actions/parent",

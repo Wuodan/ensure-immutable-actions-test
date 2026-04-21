@@ -29,7 +29,7 @@
   "immutable-actions": [
     {
       "actionPath": "composite-actions/leaf",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": true,
       "isFirstParty": false,
       "message": "Immutable (full SHA reference)",
@@ -40,13 +40,13 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/leaf@8f68d9f5083d7de4eba454814778038f7ed72f6e"
     }
   ],
   "mutable-actions": [
     {
       "actionPath": ".github/actions/local-from-local-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -57,11 +57,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-local-workflow@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-local-workflow@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/actions/local-from-remote-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -72,11 +72,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-remote-workflow@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-remote-workflow@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/actions/local-from-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -87,11 +87,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-workflow@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-workflow@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/actions/local-from-nested-workflow",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -102,11 +102,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-nested-workflow@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/local-from-nested-workflow@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/actions/nested-leaf",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -117,11 +117,11 @@
       "sourceJobName": "remote-reusable",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/actions/nested-leaf@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/actions/nested-leaf@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/workflows/nested-local-child.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -131,11 +131,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-local-child.yml@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-local-child.yml@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/workflows/nested-remote-child.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -145,11 +145,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-remote-child.yml@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-remote-child.yml@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/workflows/nested-mutable.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -159,11 +159,11 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-mutable.yml@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/nested-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": ".github/workflows/reusable-mutable.yml",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -173,7 +173,7 @@
       "repo": "__FIXTURES_REPO__",
       "sourceJobName": "remote-reusable",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@main"
+      "uses": "__FIXTURES_REPOSITORY__/.github/workflows/reusable-mutable.yml@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": "composite-actions/local-reusable-workflow-target",
@@ -188,11 +188,11 @@
       "sourceJobName": "local-reusable-workflow",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@main"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": "composite-actions/parent/child",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -203,11 +203,11 @@
       "sourceJobName": "remote-composite-duplicate",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent/child@main"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent/child@upstream-PR/fix-workflow-local-action-path-resolution"
     },
     {
       "actionPath": "composite-actions/parent",
-      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@main",
+      "entrypointUses": "__FIXTURES_REPOSITORY__/composite-actions/parent@upstream-PR/fix-workflow-local-action-path-resolution",
       "immutable": false,
       "isFirstParty": false,
       "message": "No release found for this reference",
@@ -218,7 +218,7 @@
       "sourceJobName": "remote-composite-duplicate",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent@main"
+      "uses": "__FIXTURES_REPOSITORY__/composite-actions/parent@upstream-PR/fix-workflow-local-action-path-resolution"
     }
   ],
   "unsupported-actions": [],
