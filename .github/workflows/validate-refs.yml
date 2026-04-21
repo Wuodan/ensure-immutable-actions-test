@@ -2,6 +2,31 @@ name: Validate Refs
 
 on:
   workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Action repository to test'
+        required: false
+        default: 'joshjohanning/ensure-immutable-actions'
+        type: string
+      ref:
+        description: 'Action ref to test (branch, tag, or SHA)'
+        required: false
+        default: 'main'
+        type: string
+      pr:
+        description: 'PR number to test (overrides ref if set)'
+        required: false
+        type: string
+      fixtures_repository:
+        description: 'Fixtures repository to use for the companion workflows and actions'
+        required: false
+        default: 'Wuodan/ensure-immutable-actions-test-custom-actions'
+        type: string
+      skip_output_assertions:
+        description: 'Skip hardcoded output assertions and only run the validation workflows'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   validate:
