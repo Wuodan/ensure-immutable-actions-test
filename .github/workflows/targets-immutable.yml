@@ -7,7 +7,7 @@ jobs:
   remote-composite:
     runs-on: ubuntu-latest
     steps:
-      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@db88ac462544346b5880f6c04a69486f72ce7173
+      - uses: Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@3aa32f4195cfe2c317e08bf59720997b7cecf3b7
 
   remote-reusable:
-    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@db88ac462544346b5880f6c04a69486f72ce7173
+    uses: Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@3aa32f4195cfe2c317e08bf59720997b7cecf3b7

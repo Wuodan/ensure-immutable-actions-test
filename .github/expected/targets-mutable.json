@@ -5,7 +5,7 @@
   ],
   "mutable-actions": [
     {
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@main",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/.github/workflows/reusable.yml@upstream-PR/feat-scan-nested-actions-in-first-party-reusable-workflows",
       "owner": "Wuodan",
       "repo": "ensure-immutable-actions-test-custom-actions",
       "actionPath": ".github/workflows/reusable.yml",
@@ -16,7 +16,7 @@
       "message": "No release found for this reference"
     },
     {
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@main",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@upstream-PR/feat-scan-nested-actions-in-first-party-reusable-workflows",
       "owner": "Wuodan",
       "repo": "ensure-immutable-actions-test-custom-actions",
       "actionPath": "composite-actions/parent/child",
@@ -27,7 +27,7 @@
       "message": "No release found for this reference"
     },
     {
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@main",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@upstream-PR/feat-scan-nested-actions-in-first-party-reusable-workflows",
       "owner": "Wuodan",
       "repo": "ensure-immutable-actions-test-custom-actions",
       "actionPath": "composite-actions/parent",
@@ -40,7 +40,7 @@
   ],
   "immutable-actions": [
     {
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@87788a8bfd15d2098b295b8193e16019bf2e45db",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/leaf@3aa32f4195cfe2c317e08bf59720997b7cecf3b7",
       "owner": "Wuodan",
       "repo": "ensure-immutable-actions-test-custom-actions",
       "actionPath": "composite-actions/leaf",
