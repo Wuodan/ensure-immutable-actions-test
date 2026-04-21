@@ -16,77 +16,53 @@ if [[ -z "${FIXTURES_REPOSITORY:-}" ]]; then
   exit 1
 fi
 
-if [[ -z "${FIXTURES_OWNER:-}" ]]; then
-  echo "FIXTURES_OWNER is required" >&2
-  exit 1
-fi
-
 if [[ -z "${FIXTURES_REPO:-}" ]]; then
   echo "FIXTURES_REPO is required" >&2
   exit 1
 fi
 
 input_file="$1"
+tmp_file="$(mktemp)"
+trap 'rm -f "$tmp_file"' EXIT
 
-jq \
-  --arg fixtures_repository "$FIXTURES_REPOSITORY" \
-  --arg fixtures_owner "$FIXTURES_OWNER" \
-  --arg fixtures_repo "$FIXTURES_REPO" \
-  '
-  def is_placeholder:
-    . == "__FIXTURE_IMMUTABLE_REF__" or . == "__FIXTURE_MUTABLE_REF__";
+jq -S . "$input_file" > "$tmp_file"
+mapfile -t lines < "$tmp_file"
 
-  def is_full_sha:
-    type == "string" and test("^[A-Fa-f0-9]{40}$");
+uses_pattern="^([[:space:]]*\\\"(uses|entrypointUses)\\\":[[:space:]]*\\\")(${FIXTURES_REPOSITORY}[^@\\\"]*@)([^\\\"]+)(\\\".*)$"
+ref_pattern='^([[:space:]]*"ref":[[:space:]]*")([^"]+)(".*)$'
 
-  def fixture_ref_placeholder($ref):
-    if ($ref | is_placeholder) then
-      $ref
-    elif ($ref | is_full_sha) then
-      "__FIXTURE_IMMUTABLE_REF__"
-    else
-      "__FIXTURE_MUTABLE_REF__"
-    end;
+fixture_placeholder() {
+  local ref="$1"
+  if [[ "$ref" == "__FIXTURE_IMMUTABLE_REF__" || "$ref" == "__FIXTURE_MUTABLE_REF__" ]]; then
+    printf '%s\n' "$ref"
+  elif [[ "$ref" =~ ^[A-Fa-f0-9]{40}$ ]]; then
+    printf '__FIXTURE_IMMUTABLE_REF__\n'
+  else
+    printf '__FIXTURE_MUTABLE_REF__\n'
+  fi
+}
 
-  def normalize_fixture_uses:
-    if type == "string" and startswith($fixtures_repository + "/") and test("@[^@]+$") then
-      capture("^(?<prefix>.*)@(?<ref>[^@]+)$") as $parts
-      | "\($parts.prefix)@" + fixture_ref_placeholder($parts.ref)
-    else
-      .
-    end;
+for i in "${!lines[@]}"; do
+  line="${lines[$i]}"
 
-  def normalize_fixture_object:
-    . as $obj
-    | (if ($obj.uses? | type) == "string" then .uses |= normalize_fixture_uses else . end)
-    | (if ($obj.entrypointUses? | type) == "string" then .entrypointUses |= normalize_fixture_uses else . end)
-    | if
-        ($obj.owner? == $fixtures_owner) and
-        ($obj.repo? == $fixtures_repo) and
-        (($obj.ref? | type) == "string")
-      then
-        .ref = fixture_ref_placeholder($obj.ref)
-      else
-        .
-      end;
+  if [[ "$line" =~ $uses_pattern ]]; then
+    prefix="${BASH_REMATCH[1]}${BASH_REMATCH[3]}"
+    ref="${BASH_REMATCH[4]}"
+    suffix="${BASH_REMATCH[5]}"
+    placeholder="$(fixture_placeholder "$ref")"
+    lines[$i]="${prefix}${placeholder}${suffix}"
+    continue
+  fi
 
-  walk(
-    if type == "object" then
-      normalize_fixture_object
-    else
-      .
-    end
-  )
-  | .["mutable-actions"] |= sort_by(.uses)
-  | .["immutable-actions"] |= sort_by(.uses)
-  | .["unsupported-actions"] |= sort_by(.uses)
-  | .["first-party-actions"] |= sort_by(.uses)
-  | .["workflows-checked"] |= sort
-  | .["unsupported-actions"] |= map(
-      if (.sourceLocations? | type) == "array" then
-        .sourceLocations |= sort_by(.workflowFile, .jobName, .stepName)
-      else
-        .
-      end
-    )
-  ' "$input_file"
+  if [[ "$line" =~ $ref_pattern ]]; then
+    if (( i + 2 < ${#lines[@]} )) && [[ "${lines[$((i + 2))]}" == *"\"repo\": \"$FIXTURES_REPO\""* ]]; then
+      prefix="${BASH_REMATCH[1]}"
+      ref="${BASH_REMATCH[2]}"
+      suffix="${BASH_REMATCH[3]}"
+      placeholder="$(fixture_placeholder "$ref")"
+      lines[$i]="${prefix}${placeholder}${suffix}"
+    fi
+  fi
+done
+
+printf '%s\n' "${lines[@]}"

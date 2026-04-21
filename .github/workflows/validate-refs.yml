@@ -141,7 +141,6 @@ jobs:
           SCENARIO_NAME: ${{ matrix.scenario.name }}
           EXPECTED_FILE: ${{ matrix.scenario.expected_file }}
           FIXTURES_REPOSITORY: ${{ steps.fixtures.outputs.repository }}
-          FIXTURES_OWNER: ${{ steps.fixtures.outputs.owner }}
           FIXTURES_REPO: ${{ steps.fixtures.outputs.repo }}
           ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
           WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
