@@ -42,3 +42,22 @@ they are pinned to the full commit SHA
 `3aa32f4195cfe2c317e08bf59720997b7cecf3b7`.
 
 The unsupported scenario should report `docker://alpine:3.20` as unsupported.
+
+## Fixture Branch Maintenance
+
+The fixtures repository can contain self-references pinned to full commit SHAs.
+That is intentional and part of what this suite validates.
+
+Because of that, fixture maintenance is not “edit once and done”:
+
+- a fixture change may require a follow-up fixtures commit that updates one or
+  more pinned self-references
+- workflow expectations in this repository must match the committed fixture
+  graph of the selected fixtures branch, not just its branch tip
+
+Rule of thumb:
+
+1. change fixture content in `ensure-immutable-actions-test-custom-actions`
+2. if needed, add a follow-up commit that updates pinned self-SHAs there
+3. update expected outputs in this repository to match the resulting fixture
+   graph
