@@ -12,4 +12,4 @@ jobs:
   remote-composite:
     runs-on: ubuntu-latest
     steps:
-      - uses: __FIXTURES_REPOSITORY__/composite-actions/docker-unsupported@64b6290f8d6f3adef61136543f43c6607d5b301e
+      - uses: __FIXTURES_REPOSITORY__/composite-actions/docker-unsupported@8f68d9f5083d7de4eba454814778038f7ed72f6e
