@@ -3,4 +3,4 @@ name: Local Reusable Workflow Mutable Wrapper
 runs:
   using: composite
   steps:
-    - uses: __FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@main
+    - uses: __FIXTURES_REPOSITORY__/composite-actions/local-reusable-workflow-target@upstream-PR/fix-apply-workflow-exclusions-during-local-recursion
