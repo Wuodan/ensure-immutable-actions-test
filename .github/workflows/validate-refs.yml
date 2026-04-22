@@ -13,10 +13,6 @@ on:
         required: false
         default: 'main'
         type: string
-      pr:
-        description: 'PR number to test (overrides ref if set)'
-        required: false
-        type: string
       fixtures_repository:
         description: 'Fixtures repository to use for the companion workflows and actions'
         required: false
@@ -52,7 +48,6 @@ jobs:
             echo "|---|---|"
             echo "| Action repository | \`${{ inputs.repository }}\` |"
             echo "| Action ref | \`${{ inputs.ref }}\` |"
-            echo "| Action PR | \`${{ inputs.pr || 'n/a' }}\` |"
             echo "| Test repository | \`${{ github.repository }}\` |"
             echo "| Test branch | \`${{ github.ref_name }}\` |"
             echo "| Fixtures repository | \`${{ steps.fixtures.outputs.repository }}\` |"
@@ -123,6 +118,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout action under test
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+          path: action
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: action/package-lock.json
+
+      - name: Build action under test
+        working-directory: action
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          npm run package
+
       - name: Render repository-specific fixtures
         id: fixtures
         env:
@@ -133,7 +150,7 @@ jobs:
 
       - name: Run ensure-immutable-actions
         id: scan
-        uses: joshjohanning/ensure-immutable-actions@v2.5.1
+        uses: ./action
         with:
           github-token: ${{ github.token }}
           workflows: ${{ matrix.scenario.workflows }}
@@ -178,6 +195,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout action under test
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+          path: action
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: action/package-lock.json
+
+      - name: Build action under test
+        working-directory: action
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          npm run package
+
       - name: Render repository-specific fixtures
         id: fixtures
         env:
@@ -189,7 +228,7 @@ jobs:
       - name: Run ensure-immutable-actions with fail-on-mutable enabled
         id: scan
         continue-on-error: true
-        uses: joshjohanning/ensure-immutable-actions@v2.5.1
+        uses: ./action
         with:
           github-token: ${{ github.token }}
           workflows: targets-mutable.yml
