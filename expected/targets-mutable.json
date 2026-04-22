@@ -191,21 +191,6 @@
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@__FIXTURE_MUTABLE_REF__"
     },
     {
-      "actionPath": "composite-actions/parent",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
-      "immutable": false,
-      "isFirstParty": false,
-      "message": "No release found for this reference",
-      "owner": "Wuodan",
-      "ref": "__FIXTURE_MUTABLE_REF__",
-      "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
-      "sourceJobName": "remote-composite-duplicate",
-      "sourceStepName": "unnamed step",
-      "sourceWorkflowFile": "targets-mutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__"
-    },
-    {
       "actionPath": "composite-actions/parent/child",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
       "immutable": false,
@@ -219,6 +204,21 @@
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/parent",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-composite-duplicate",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_MUTABLE_REF__"
     }
   ],
   "unsupported-actions": [],

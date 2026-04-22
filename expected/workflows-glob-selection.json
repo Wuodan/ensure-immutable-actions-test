@@ -204,21 +204,6 @@
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/local-reusable-workflow-target@__FIXTURE_IMMUTABLE_REF__"
     },
     {
-      "actionPath": "composite-actions/parent",
-      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_IMMUTABLE_REF__",
-      "immutable": true,
-      "isFirstParty": false,
-      "message": "Immutable (full SHA reference)",
-      "owner": "Wuodan",
-      "ref": "__FIXTURE_IMMUTABLE_REF__",
-      "releaseFound": false,
-      "repo": "ensure-immutable-actions-test-custom-actions",
-      "sourceJobName": "remote-composite",
-      "sourceStepName": "unnamed step",
-      "sourceWorkflowFile": "targets-immutable.yml",
-      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_IMMUTABLE_REF__"
-    },
-    {
       "actionPath": "composite-actions/parent/child",
       "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_IMMUTABLE_REF__",
       "immutable": true,
@@ -232,6 +217,21 @@
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
       "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent/child@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/parent",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-custom-actions",
+      "sourceJobName": "remote-composite",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-custom-actions/composite-actions/parent@__FIXTURE_IMMUTABLE_REF__"
     }
   ],
   "mutable-actions": [],

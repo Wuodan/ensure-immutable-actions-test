@@ -58,7 +58,6 @@ jobs:
             echo "| Fixtures repository | \`${{ steps.fixtures.outputs.repository }}\` |"
             echo "| Fixtures branch | \`${{ steps.fixtures.outputs.branch }}\` |"
             echo "| Fixtures SHA | \`${{ steps.fixtures.outputs.sha }}\` |"
-            echo "| Workflow file | \`${{ github.workflow_ref }}\` |"
           } >> "$GITHUB_STEP_SUMMARY"
 
   validate:
