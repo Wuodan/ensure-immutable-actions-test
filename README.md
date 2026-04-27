@@ -6,7 +6,7 @@ This repository is a caller/workflow-under-test for manual validation of
 ## What it does
 
 - `targets-mutable.yml` references remote composite actions and a remote
-  reusable workflow from `Wuodan/ensure-immutable-actions-test-custom-actions`
+  reusable workflow from `Wuodan/ensure-immutable-actions-test-fixtures`
   using mutable `@main` refs
 - `targets-immutable.yml` references the same remote targets using a full
   commit SHA
@@ -38,8 +38,7 @@ The action under test should recurse into:
 The mutable scenario should report the remote refs as mutable.
 
 The immutable scenario should report the same remote refs as immutable because
-they are pinned to the full commit SHA
-`3aa32f4195cfe2c317e08bf59720997b7cecf3b7`.
+they are pinned to the full commit SHA.
 
 The unsupported scenario should report `docker://alpine:3.20` as unsupported.
 
@@ -57,7 +56,7 @@ Because of that, fixture maintenance is not “edit once and done”:
 
 Rule of thumb:
 
-1. change fixture content in `ensure-immutable-actions-test-custom-actions`
+1. change fixture content in `ensure-immutable-actions-test-fixtures`
 2. if needed, add a follow-up commit that updates pinned self-SHAs there
 3. update expected outputs in this repository to match the resulting fixture
    graph

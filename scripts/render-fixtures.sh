@@ -6,7 +6,7 @@ set -euo pipefail
 # Expected JSON keeps placeholders and is not resolved here.
 
 if [[ -z "${FIXTURES_REPOSITORY:-}" ]]; then
-  echo "FIXTURES_REPOSITORY is required, e.g. owner/ensure-immutable-actions-test-custom-actions" >&2
+  echo "FIXTURES_REPOSITORY is required, e.g. owner/ensure-immutable-actions-test-fixtures" >&2
   exit 1
 fi
 
@@ -44,13 +44,13 @@ expected_files=(
 )
 
 sed -E -i \
-  -e "s|Wuodan/ensure-immutable-actions-test-custom-actions|$FIXTURES_REPOSITORY|g" \
+  -e "s|Wuodan/ensure-immutable-actions-test-fixtures|$FIXTURES_REPOSITORY|g" \
   "${workflow_files[@]}"
 
 sed -E -i \
-  -e "s|Wuodan/ensure-immutable-actions-test-custom-actions|$FIXTURES_REPOSITORY|g" \
+  -e "s|Wuodan/ensure-immutable-actions-test-fixtures|$FIXTURES_REPOSITORY|g" \
   -e "s|\"owner\": \"Wuodan\"|\"owner\": \"$FIXTURES_OWNER\"|g" \
-  -e "s|\"repo\": \"ensure-immutable-actions-test-custom-actions\"|\"repo\": \"$FIXTURES_REPO\"|g" \
+  -e "s|\"repo\": \"ensure-immutable-actions-test-fixtures\"|\"repo\": \"$FIXTURES_REPO\"|g" \
   "${expected_files[@]}"
 
 sed -E -i \

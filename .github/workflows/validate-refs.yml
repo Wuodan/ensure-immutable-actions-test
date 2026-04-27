@@ -16,7 +16,7 @@ on:
       fixtures_repository:
         description: 'Fixtures repository to use for the companion workflows and actions'
         required: false
-        default: 'Wuodan/ensure-immutable-actions-test-custom-actions'
+        default: 'Wuodan/ensure-immutable-actions-test-fixtures'
         type: string
       fixtures_branch:
         description: 'Fixtures branch to use for mutable refs and SHA resolution'
