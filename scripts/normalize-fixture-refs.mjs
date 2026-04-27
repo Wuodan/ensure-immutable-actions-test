@@ -103,10 +103,10 @@ function actionKey(action) {
 }
 
 const parsed = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
+const normalized = normalizeValue(parsed, null);
 for (const key of ['mutable-actions', 'immutable-actions', 'unsupported-actions', 'first-party-actions']) {
-  if (Array.isArray(parsed[key])) {
-    parsed[key].sort((a, b) => Buffer.compare(Buffer.from(actionKey(a)), Buffer.from(actionKey(b))));
+  if (Array.isArray(normalized[key])) {
+    normalized[key].sort((a, b) => Buffer.compare(Buffer.from(actionKey(a)), Buffer.from(actionKey(b))));
   }
 }
-const normalized = normalizeValue(parsed, null);
 process.stdout.write(`${JSON.stringify(normalized, null, 2)}\n`);
