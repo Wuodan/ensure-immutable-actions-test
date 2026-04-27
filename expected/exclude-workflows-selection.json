@@ -192,7 +192,6 @@
   "mutable-actions": [],
   "unsupported-actions": [],
   "workflows-checked": [
-    "targets-excluded-nested-local-workflow.yml",
     "targets-immutable.yml"
   ]
 }

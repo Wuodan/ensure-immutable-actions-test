@@ -89,7 +89,7 @@ jobs:
             fail_on_mutable: false
             include_first_party: false
           - name: exclude-workflows selection
-            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml,targets-local-reusable-workflow-*.yml,excluded-nested-local-*.yml
+            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml,targets-local-reusable-workflow-*.yml,targets-excluded-nested-*.yml,excluded-nested-local-*.yml
             expected_file: expected/exclude-workflows-selection.json
             fail_on_mutable: false
             include_first_party: false
@@ -97,6 +97,12 @@ jobs:
             workflows: targets-excluded-nested-local-workflow.yml
             exclude_workflows: excluded-nested-local-child.yml
             expected_file: expected/exclude-nested-local-workflow.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: excluded nested remote workflow
+            workflows: targets-excluded-nested-remote-workflow.yml
+            exclude_workflows: excluded-nested-remote-child.yml
+            expected_file: expected/exclude-nested-remote-workflow.json
             fail_on_mutable: false
             include_first_party: false
           - name: invalid workflows input

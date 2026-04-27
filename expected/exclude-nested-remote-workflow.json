@@ -1,0 +1,68 @@
+{
+  "all-passed": true,
+  "first-party-actions": [
+    {
+      "allowed": true,
+      "excluded": true,
+      "immutable": true,
+      "isFirstParty": true,
+      "message": "Excluded (first-party)",
+      "owner": "actions",
+      "ref": "v4",
+      "releaseFound": false,
+      "repo": "checkout",
+      "uses": "actions/checkout@v4"
+    }
+  ],
+  "immutable-actions": [
+    {
+      "actionPath": ".github/actions/local-from-workflow",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/excluded-nested-remote-parent.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-excluded-nested-remote-workflow.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/actions/local-from-workflow@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": ".github/workflows/excluded-nested-remote-parent.yml",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/excluded-nested-remote-parent.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceWorkflowFile": "targets-excluded-nested-remote-workflow.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/excluded-nested-remote-parent.yml@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/leaf",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/excluded-nested-remote-parent.yml@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-reusable",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-excluded-nested-remote-workflow.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__"
+    }
+  ],
+  "mutable-actions": [],
+  "unsupported-actions": [],
+  "workflows-checked": [
+    "targets-excluded-nested-remote-workflow.yml"
+  ]
+}

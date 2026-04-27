@@ -1,0 +1,8 @@
+name: Targets Excluded Nested Remote Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  remote-reusable:
+    uses: Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/excluded-nested-remote-parent.yml@__FIXTURES_SHA__
