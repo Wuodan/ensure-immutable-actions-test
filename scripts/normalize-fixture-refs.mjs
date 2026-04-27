@@ -105,7 +105,7 @@ function actionKey(action) {
 const parsed = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
 for (const key of ['mutable-actions', 'immutable-actions', 'unsupported-actions', 'first-party-actions']) {
   if (Array.isArray(parsed[key])) {
-    parsed[key].sort((a, b) => actionKey(a).localeCompare(actionKey(b)));
+    parsed[key].sort((a, b) => Buffer.compare(Buffer.from(actionKey(a)), Buffer.from(actionKey(b))));
   }
 }
 const normalized = normalizeValue(parsed, null);
