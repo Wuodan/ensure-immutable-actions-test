@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@baseline/upstream-99004139
-      - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@63b1cf61055a58adbce3e8b7c638d6070e1eb544
+      - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURES_SHA__

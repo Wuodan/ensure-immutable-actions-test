@@ -7,10 +7,10 @@ jobs:
   remote-composite:
     runs-on: ubuntu-latest
     steps:
-      - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@63b1cf61055a58adbce3e8b7c638d6070e1eb544
+      - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURES_SHA__
 
   remote-reusable:
-    uses: Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@63b1cf61055a58adbce3e8b7c638d6070e1eb544
+    uses: Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml@__FIXTURES_SHA__
 
   local-reusable-workflow:
     uses: ./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml
