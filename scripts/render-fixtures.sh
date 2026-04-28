@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Apply the selected fixtures repository and branch to the target workflows.
-# For immutable top-level fixture refs, use the current tip SHA of that branch.
-# Expected JSON keeps placeholders and is not resolved here.
+# Apply the selected fixtures repository and branch placeholders to the target
+# workflows. For immutable top-level fixture refs, use the current tip SHA of
+# the selected branch. Expected JSON keeps placeholders and is not resolved
+# here.
 
 if [[ -z "${FIXTURES_REPOSITORY:-}" ]]; then
   echo "FIXTURES_REPOSITORY is required, e.g. owner/ensure-immutable-actions-test-fixtures" >&2
@@ -11,7 +12,7 @@ if [[ -z "${FIXTURES_REPOSITORY:-}" ]]; then
 fi
 
 if [[ -z "${FIXTURES_BRANCH:-}" ]]; then
-  echo "FIXTURES_BRANCH is required, e.g. baseline/upstream-99004139" >&2
+  echo "FIXTURES_BRANCH is required, e.g. main or fix/branch-name" >&2
   exit 1
 fi
 
@@ -54,7 +55,6 @@ sed -E -i \
   "${expected_files[@]}"
 
 sed -E -i \
-  -e "s|@baseline/upstream-99004139|@$FIXTURES_BRANCH|g" \
   -e "s|@__FIXTURES_BRANCH__|@$FIXTURES_BRANCH|g" \
   "${workflow_files[@]}"
 

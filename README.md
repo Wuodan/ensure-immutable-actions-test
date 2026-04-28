@@ -7,7 +7,7 @@ This repository is a caller/workflow-under-test for manual validation of
 
 - `targets-mutable.yml` references remote composite actions and a remote
   reusable workflow from `Wuodan/ensure-immutable-actions-test-fixtures`
-  using mutable `@main` refs
+  using the selected mutable fixtures branch
 - `targets-immutable.yml` references the same remote targets using a full
   commit SHA
 - `targets-unsupported.yml` references a SHA-pinned remote composite action
@@ -74,7 +74,8 @@ Instead it uses:
 The workflow does two things:
 
 - `scripts/render-fixtures.sh` rewrites the target workflows for the selected
-  `fixtures_repository` and `fixtures_branch`
+  `fixtures_repository`, replacing `__FIXTURES_BRANCH__` and
+  `__FIXTURES_SHA__`
 - `scripts/normalize-fixture-refs.mjs` rewrites fixture refs in JSON before
   comparing actual and expected output
 
