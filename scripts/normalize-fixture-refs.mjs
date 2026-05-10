@@ -86,19 +86,30 @@ function stringKey(value) {
   return typeof value === 'string' ? value : '';
 }
 
+function reflessReference(value) {
+  if (typeof value !== 'string') {
+    return '';
+  }
+
+  const atIndex = value.lastIndexOf('@');
+  return atIndex === -1 ? value : value.slice(0, atIndex);
+}
+
 function actionKey(action) {
   return [
-    stringKey(action?.uses),
-    stringKey(action?.entrypointUses),
-    stringKey(action?.ref),
     stringKey(action?.sourceWorkflowFile),
-    stringKey(action?.sourceJobName),
-    stringKey(action?.sourceStepName),
     stringKey(action?.workflowFile),
+    stringKey(action?.sourceJobName),
     stringKey(action?.jobName),
+    stringKey(action?.sourceStepName),
     stringKey(action?.stepName),
+    stringKey(action?.owner),
+    stringKey(action?.repo),
     stringKey(action?.actionPath),
-    stringKey(action?.message)
+    reflessReference(action?.uses),
+    reflessReference(action?.entrypointUses),
+    stringKey(action?.message),
+    stringKey(action?.ref)
   ].join('\u0000');
 }
 
