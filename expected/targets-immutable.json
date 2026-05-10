@@ -100,23 +100,25 @@
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-immutable.yml",
       "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/local-reusable-workflow-target",
+      "entrypointUses": "./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "local-reusable-workflow",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-immutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/local-reusable-workflow-target@__FIXTURE_IMMUTABLE_REF__"
     }
   ],
   "mutable-actions": [],
-  "unsupported-actions": [
-    {
-      "message": "Unsupported local action: action.yml not found",
-      "sourceLocations": [
-        {
-          "jobName": "local-reusable-workflow",
-          "workflowFile": "targets-immutable.yml"
-        }
-      ],
-      "supported": false,
-      "unsupportedType": "local-action",
-      "uses": "./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml"
-    }
-  ],
+  "unsupported-actions": [],
   "workflows-checked": [
     "targets-immutable.yml"
   ]

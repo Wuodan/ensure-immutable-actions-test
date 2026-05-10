@@ -102,22 +102,24 @@
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mutable.yml",
       "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_MUTABLE_REF__"
-    }
-  ],
-  "unsupported-actions": [
+    },
     {
-      "message": "Unsupported local action: action.yml not found",
-      "sourceLocations": [
-        {
-          "jobName": "local-reusable-workflow",
-          "workflowFile": "targets-mutable.yml"
-        }
-      ],
-      "supported": false,
-      "unsupportedType": "local-action",
-      "uses": "./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml"
+      "actionPath": "composite-actions/local-reusable-workflow-target",
+      "entrypointUses": "./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "local-reusable-workflow",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mutable.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/local-reusable-workflow-target@__FIXTURE_MUTABLE_REF__"
     }
   ],
+  "unsupported-actions": [],
   "workflows-checked": [
     "targets-mutable.yml"
   ]
