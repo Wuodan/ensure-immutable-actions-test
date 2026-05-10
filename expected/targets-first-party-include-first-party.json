@@ -9,10 +9,10 @@
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "checkout",
-      "uses": "actions/checkout@v4"
+      "uses": "actions/checkout@v6"
     },
     {
       "actionPath": "",
@@ -22,43 +22,43 @@
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "setup-node",
-      "uses": "actions/setup-node@v4"
+      "uses": "actions/setup-node@v6"
     }
   ],
   "immutable-actions": [],
   "mutable-actions": [
     {
       "actionPath": "",
-      "entrypointUses": "actions/checkout@v4",
+      "entrypointUses": "actions/checkout@v6",
       "immutable": false,
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "checkout",
       "sourceJobName": "setup",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-first-party.yml",
-      "uses": "actions/checkout@v4"
+      "uses": "actions/checkout@v6"
     },
     {
       "actionPath": "",
-      "entrypointUses": "actions/setup-node@v4",
+      "entrypointUses": "actions/setup-node@v6",
       "immutable": false,
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "setup-node",
       "sourceJobName": "setup",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-first-party.yml",
-      "uses": "actions/setup-node@v4"
+      "uses": "actions/setup-node@v6"
     }
   ],
   "unsupported-actions": [],

@@ -9,10 +9,10 @@
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "checkout",
-      "uses": "actions/checkout@v4"
+      "uses": "actions/checkout@v6"
     },
     {
       "actionPath": "",
@@ -22,10 +22,10 @@
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "setup-node",
-      "uses": "actions/setup-node@v4"
+      "uses": "actions/setup-node@v6"
     }
   ],
   "immutable-actions": [
@@ -98,13 +98,13 @@
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "checkout",
       "sourceJobName": "mixed",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mixed-first-party.yml",
-      "uses": "actions/checkout@v4"
+      "uses": "actions/checkout@v6"
     },
     {
       "actionPath": "",
@@ -113,13 +113,13 @@
       "isFirstParty": true,
       "message": "No release found for this reference",
       "owner": "actions",
-      "ref": "v4",
+      "ref": "v6",
       "releaseFound": false,
       "repo": "setup-node",
       "sourceJobName": "mixed",
       "sourceStepName": "unnamed step",
       "sourceWorkflowFile": "targets-mixed-first-party.yml",
-      "uses": "actions/setup-node@v4"
+      "uses": "actions/setup-node@v6"
     }
   ],
   "unsupported-actions": [],
