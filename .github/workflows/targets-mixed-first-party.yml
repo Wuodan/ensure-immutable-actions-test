@@ -7,7 +7,7 @@ jobs:
   mixed:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURES_BRANCH__
       - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURES_SHA__
