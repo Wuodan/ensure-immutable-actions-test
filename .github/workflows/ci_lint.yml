@@ -124,48 +124,18 @@ jobs:
           delete-branch: true
           labels: bot
 
-      - name: Log created PR
+      - name: Maintain PR
         if: >-
           always() &&
           steps.ml.outputs.has_updated_sources == 1 &&
           env.FIX_MODE == 'pull_request'
-        env:
-          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
-          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
-        run: |
-          echo "PR Number - ${PR_NUMBER}"
-          echo "PR URL - ${PR_URL}"
-
-      - name: Close stale autofix PR
-        if: >-
-          always() &&
-          steps.ml.outputs.has_updated_sources != 1 &&
-          env.FIX_MODE == 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          AUTOFIX_BRANCH: megalinter/fixes/${{ github.ref_name }}
-        run: |
-          set -euo pipefail
-          pr_number="$(
-            gh pr list \
-              --repo "${{ github.repository }}" \
-              --head "${AUTOFIX_BRANCH}" \
-              --base "${{ github.ref_name }}" \
-              --state open \
-              --json number \
-              --jq '.[0].number // empty'
-          )"
-
-          if [[ -z "${pr_number}" ]]; then
-            echo "No open autofix PR to close for ${AUTOFIX_BRANCH}."
-            exit 0
-          fi
-
-          gh pr close "${pr_number}" \
-            --repo "${{ github.repository }}" \
-            --delete-branch \
-            --comment \
-            "Closing stale autofix PR because the latest lint run produced no fixes."
+        uses: ./.github/actions/maintain-pull-request
+        with:
+          github_token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          pr_branch: megalinter/fixes/${{ github.ref_name }}
+          base_branch: ${{ github.ref_name }}
+          close_comment: Closing stale pull request because the latest lint run produced no fixes.
 
       - name: Fail if linting found issues
         if: >-
