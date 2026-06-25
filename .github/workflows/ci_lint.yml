@@ -7,7 +7,7 @@ name: "CI: lint"
       fix_mode:
         description: How to publish MegaLinter autofixes for this manual run
         required: false
-        default: none
+        default: pull_request
         type: choice
         options:
           - none
