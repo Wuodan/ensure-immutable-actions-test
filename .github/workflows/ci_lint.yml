@@ -124,12 +124,24 @@ jobs:
           delete-branch: true
           labels: bot
 
-      - name: Maintain PR
+      - name: Log created PR
         if: >-
           always() &&
           steps.ml.outputs.has_updated_sources == 1 &&
           env.FIX_MODE == 'pull_request'
-        uses: ./.github/actions/maintain-pull-request
+        env:
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
+        run: |
+          echo "PR Number - ${PR_NUMBER}"
+          echo "PR URL - ${PR_URL}"
+
+      - name: Close stale autofix PR
+        if: >-
+          always() &&
+          steps.ml.outputs.has_updated_sources != 1 &&
+          env.FIX_MODE == 'pull_request'
+        uses: ./.github/actions/close-pull-request
         with:
           github_token: ${{ github.token }}
           repository: ${{ github.repository }}
