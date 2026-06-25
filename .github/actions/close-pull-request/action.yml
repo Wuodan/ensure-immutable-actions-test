@@ -14,6 +14,10 @@ inputs:
   base_branch:
     description: Base branch name for the pull request.
     required: true
+  title_regex:
+    description: Optional regular expression that the pull request title must match to be closed.
+    required: false
+    default: ""
   close_comment:
     description: Comment posted when closing the pull request.
     required: false
@@ -29,18 +33,30 @@ runs:
         REPOSITORY: ${{ inputs.repository }}
         PR_BRANCH: ${{ inputs.pr_branch }}
         BASE_BRANCH: ${{ inputs.base_branch }}
+        TITLE_REGEX: ${{ inputs.title_regex }}
         CLOSE_COMMENT: ${{ inputs.close_comment }}
       run: |
         set -euo pipefail
 
-        pr_number="$(
+        pr_data="$(
           gh pr list \
             --repo "${REPOSITORY}" \
             --head "${PR_BRANCH}" \
             --base "${BASE_BRANCH}" \
             --state open \
-            --json number \
-            --jq '.[0].number // empty'
+            --json number,title
+        )"
+
+        pr_number="$(
+          jq -r --arg title_regex "${TITLE_REGEX}" '
+            map(
+              select(
+                ($title_regex == "") or
+                (.title | test($title_regex))
+              )
+            )
+            | .[0].number // empty
+          ' <<< "${pr_data}"
         )"
 
         if [[ -z "${pr_number}" ]]; then
