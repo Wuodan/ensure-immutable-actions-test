@@ -13,7 +13,11 @@ name: "CI: lint"
           - none
           - pull_request
   pull_request:
+    branches-ignore:
+      - lint-autofix/**
   push:
+    branches-ignore:
+      - lint-autofix/**
 
 concurrency:
   group: >-
@@ -45,6 +49,7 @@ env:
 jobs:
   lint:
     name: Run linters
+    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'lint-autofix/') }}
     # runs-on: ubuntu-latest
     runs-on: [self-hosted, linux]
     env:
@@ -119,8 +124,9 @@ jobs:
           token: ${{ secrets.PAT || github.token }}
           commit-message: "[MegaLinter] Apply linters automatic fixes"
           title: "[MegaLinter] Apply linters automatic fixes"
+          body-path: megalinter-reports/megalinter-report.md
           # Keep the branch name stable so repeated runs update the same PR.
-          branch: megalinter/fixes/${{ github.ref_name }}
+          branch: lint-autofix/${{ github.ref_name }}
           delete-branch: true
           labels: bot
 
@@ -145,7 +151,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
           repository: ${{ github.repository }}
-          pr_branch: megalinter/fixes/${{ github.ref_name }}
+          pr_branch: lint-autofix/${{ github.ref_name }}
           base_branch: ${{ github.ref_name }}
           close_comment: Closing stale pull request because the latest lint run produced no fixes.
 
