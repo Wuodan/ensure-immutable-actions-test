@@ -65,9 +65,9 @@ jobs:
       - name: Get user information
         run: |
           {
-            echo "RUNNER_UID=$(id -u)"
-            echo "RUNNER_GID=$(id -g)"
-            echo "RUNNER_USER=$(id -un)"
+            echo "MEGALINTER_UID=$(id -u)"
+            echo "MEGALINTER_GID=$(id -g)"
+            echo "MEGALINTER_USER=$(id -un)"
           } >> "$GITHUB_ENV"
 
       - name: MegaLinter
@@ -81,9 +81,9 @@ jobs:
           APPLY_FIXES_EVENT: ${{ github.event_name }}
           APPLY_FIXES_MODE: pull_request
           # new non-root user test
-          MEGALINTER_UID: ${{ env.RUNNER_UID }}
-          MEGALINTER_GID: ${{ env.RUNNER_GID }}
-          MEGALINTER_USER:  ${{ env.RUNNER_USER }}
+          MEGALINTER_UID: ${{ env.MEGALINTER_UID }}
+          MEGALINTER_GID: ${{ env.MEGALINTER_GID }}
+          MEGALINTER_USER:  ${{ env.MEGALINTER_USER }}
 
       - name: Upload MegaLinter artifacts
         if: success() || failure()
