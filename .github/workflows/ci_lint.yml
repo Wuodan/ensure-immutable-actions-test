@@ -5,7 +5,7 @@ name: "CI: lint"
   workflow_dispatch:
     inputs:
       fix_mode:
-        description: How to publish MegaLinter autofixes for this manual run
+        description: How to publish autofixes for this run
         required: false
         default: pull_request
         type: choice
@@ -28,6 +28,7 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  actions: write
 
 env:
   # create PR with fixes on:
@@ -93,6 +94,9 @@ jobs:
           else
             echo "No 'megalinter-reports' found" 1>&2
           fi
+          # reset .github or this needs PAT
+          # refusing to allow a GitHub App to create or update workflow `.github/<path>` without `workflows` permission
+          git restore .github
 
       - name: Upload MegaLinter artifacts
         if: success() || failure()
@@ -115,11 +119,12 @@ jobs:
           token: ${{ secrets.PAT || github.token }}
           commit-message: "[MegaLinter] Apply linters automatic fixes"
           title: "[MegaLinter] Apply linters automatic fixes"
-          branch: megalinter/fixes-${{ github.run_id }}
+          # Keep the branch name stable so repeated runs update the same PR.
+          branch: megalinter/fixes/${{ github.ref_name }}
           delete-branch: true
           labels: bot
 
-      - name: Log created PR
+      - name: Log created lint PR
         if: >-
           always() &&
           steps.ml.outputs.has_updated_sources == 1 &&
@@ -130,6 +135,19 @@ jobs:
         run: |
           echo "PR Number - ${PR_NUMBER}"
           echo "PR URL - ${PR_URL}"
+
+      - name: Close stale lint PR
+        if: >-
+          always() &&
+          steps.ml.outputs.has_updated_sources != 1 &&
+          env.FIX_MODE == 'pull_request'
+        uses: ./.github/actions/close-pull-request
+        with:
+          github_token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          pr_branch: megalinter/fixes/${{ github.ref_name }}
+          base_branch: ${{ github.ref_name }}
+          close_comment: Closing stale pull request because the latest lint run produced no fixes.
 
       - name: Fail if linting found issues
         if: >-

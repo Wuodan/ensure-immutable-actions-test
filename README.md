@@ -5,9 +5,7 @@ This repository is a caller/workflow-under-test for manual validation of
 
 ## What it does
 
-- `targets-mutable.yml` references remote composite actions and a remote
-  reusable workflow from `Wuodan/ensure-immutable-actions-test-fixtures`
-  using the selected mutable fixtures branch
+- `targets-mutable.yml` references remote composite actions and a remote reusable workflow from `Wuodan/ensure-immutable-actions-test-fixtures` using the selected mutable fixtures branch
 - `targets-immutable.yml` references the same remote targets using a full
   commit SHA
 - `targets-unsupported.yml` references a SHA-pinned remote composite action
