@@ -3,6 +3,9 @@ name: Targets Mixed First Party
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   mixed:
     runs-on: ubuntu-latest

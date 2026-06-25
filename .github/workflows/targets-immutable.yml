@@ -3,6 +3,9 @@ name: Targets Immutable
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   remote-composite:
     runs-on: ubuntu-latest

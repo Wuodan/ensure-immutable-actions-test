@@ -3,6 +3,9 @@ name: Targets Local Reusable Workflow Immutable Parent
 on:
   workflow_call:
 
+permissions:
+  contents: read
+
 jobs:
   child:
     uses: ./.github/workflows/targets-local-reusable-workflow-immutable-child.yml
