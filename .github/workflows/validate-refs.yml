@@ -23,6 +23,9 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: read
+
 jobs:
   summarize-config:
     runs-on: ubuntu-latest

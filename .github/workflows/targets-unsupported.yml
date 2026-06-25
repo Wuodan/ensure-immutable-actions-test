@@ -3,6 +3,9 @@ name: Targets Unsupported
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   direct-protocol:
     runs-on: ubuntu-latest
