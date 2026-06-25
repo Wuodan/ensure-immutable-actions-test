@@ -48,7 +48,7 @@ runs:
         )"
 
         pr_number="$(
-          jq -r --arg title_regex "${title_regex}" '
+          jq -r --arg title_regex "${TITLE_REGEX}" '
             map(
               select(.title | test($title_regex))
             )
