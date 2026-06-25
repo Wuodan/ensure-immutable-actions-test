@@ -44,7 +44,8 @@ env:
 jobs:
   lint:
     name: Run linters
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]
     env:
       BRANCH_REPO: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
     steps:
