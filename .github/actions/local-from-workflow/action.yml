@@ -1,4 +1,5 @@
 name: Local From Workflow
+description: Local From Workflow
 
 runs:
   using: composite
