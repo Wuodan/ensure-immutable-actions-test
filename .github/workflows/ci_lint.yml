@@ -16,7 +16,12 @@ name: "CI: lint"
   push:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: >-
+    ${{ github.workflow }}-${{ github.ref }}${{
+      github.event_name == 'workflow_dispatch' && '-manual-' || ''
+    }}${{
+      github.event_name == 'workflow_dispatch' && github.run_id || ''
+    }}
   cancel-in-progress: true
 
 permissions:
