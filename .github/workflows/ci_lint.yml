@@ -45,8 +45,8 @@ env:
 jobs:
   lint:
     name: Run linters
-    runs-on: ubuntu-latest
-    # runs-on: [self-hosted, linux]
+    # runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]
     env:
       BRANCH_REPO: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
     steps:
@@ -95,8 +95,8 @@ jobs:
             echo "No 'megalinter-reports' found" 1>&2
           fi
           # reset .github or this needs PAT
-          # refusing to allow a GitHub App to create or update workflow `.github/<path>>` without `workflows` permission
-          # git restore .github
+          # refusing to allow a GitHub App to create or update workflow `.github/<path>` without `workflows` permission
+          git restore .github
 
       - name: Upload MegaLinter artifacts
         if: success() || failure()
