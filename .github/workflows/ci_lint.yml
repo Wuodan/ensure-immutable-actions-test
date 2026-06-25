@@ -7,7 +7,7 @@ name: "CI: lint"
       fix_mode:
         description: How to publish MegaLinter autofixes for this manual run
         required: false
-        default: none
+        default: pull_request
         type: choice
         options:
           - none
@@ -62,16 +62,36 @@ jobs:
           token: ${{ secrets.PAT || github.token }}
           fetch-depth: 0
 
+      - name: Get user information
+        run: |
+          {
+            echo "MEGALINTER_UID=$(id -u)"
+            echo "MEGALINTER_GID=$(id -g)"
+            echo "MEGALINTER_USER=$(id -un)"
+          } >> "$GITHUB_ENV"
+
       - name: MegaLinter
         id: ml
         continue-on-error: true
-        uses: oxsecurity/megalinter@0e3ce9b9c8c10effb9b269509cc47ca17cae31c7 # v9.5.0
+        uses: Wuodan/megalinter@beta
         env:
           VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ github.token }}
           APPLY_FIXES: ${{ env.FIX_MODE != 'none' && 'all' || 'none' }}
           APPLY_FIXES_EVENT: ${{ github.event_name }}
           APPLY_FIXES_MODE: pull_request
+          # new non-root user test
+          MEGALINTER_UID: ${{ env.MEGALINTER_UID }}
+          MEGALINTER_GID: ${{ env.MEGALINTER_GID }}
+          MEGALINTER_USER:  ${{ env.MEGALINTER_USER }}
+
+      - name: "Debug: Print info about megalinter-reports folder"
+        run: |
+          if [[ -e megalinter-reports ]]; then
+            ls -alh megalinter-reports
+          else
+            echo "No 'megalinter-reports' found" 1>&2
+          fi
 
       - name: Upload MegaLinter artifacts
         if: success() || failure()
