@@ -86,6 +86,14 @@ jobs:
           MEGALINTER_GID: ${{ env.MEGALINTER_GID }}
           MEGALINTER_USER:  ${{ env.MEGALINTER_USER }}
 
+      - name: "Debug: Print info about megalinter-reports folder"
+        run: |
+          if [[ -e megalinter-reports ]]; then
+            ls -alh megalinter-reports
+          else
+            echo "No 'megalinter-reports' found" 1>&2
+          fi
+
       - name: Upload MegaLinter artifacts
         if: success() || failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
