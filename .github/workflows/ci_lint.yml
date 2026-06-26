@@ -13,7 +13,11 @@ name: "CI: lint"
           - none
           - pull_request
   pull_request:
+    branches-ignore:
+      - lint-autofix/**
   push:
+    branches-ignore:
+      - lint-autofix/**
 
 concurrency:
   group: >-
