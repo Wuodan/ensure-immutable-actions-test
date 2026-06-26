@@ -21,7 +21,7 @@ inputs:
   close_comment:
     description: Comment posted when closing the pull request.
     required: false
-    default: Closing stale pull request because the latest run no longer requires it.
+    default: Closing stale PR.
 
 runs:
   using: composite
