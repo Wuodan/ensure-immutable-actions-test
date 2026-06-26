@@ -154,26 +154,26 @@ jobs:
           FIX_VUE_PRETTIER: true
           FIX_YAML_PRETTIER: true
       
-      - name: "Debug: Print info about megalinter-reports folder"
-        run: |
-          if [[ -e megalinter-reports ]]; then
-            ls -alh megalinter-reports
-          else
-            echo "No 'megalinter-reports' found" 1>&2
-          fi
-          # reset .github or this needs PAT
-          # refusing to allow a GitHub App to create or update workflow `.github/<path>` without `workflows` permission
-          git restore .github
+#      - name: "Debug: Print info about megalinter-reports folder"
+#        run: |
+#          if [[ -e megalinter-reports ]]; then
+#            ls -alh megalinter-reports
+#          else
+#            echo "No 'megalinter-reports' found" 1>&2
+#          fi
+#          # reset .github or this needs PAT
+#          # refusing to allow a GitHub App to create or update workflow `.github/<path>` without `workflows` permission
+#          git restore .github
 
-      - name: Upload MegaLinter artifacts
-        if: success() || failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: MegaLinter reports
-          include-hidden-files: "true"
-          path: |
-            megalinter-reports
-            mega-linter.log
+#      - name: Upload MegaLinter artifacts
+#        if: success() || failure()
+#        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+#        with:
+#          name: MegaLinter reports
+#          include-hidden-files: "true"
+#          path: |
+#            megalinter-reports
+#            mega-linter.log
 
       - name: Create Pull Request with applied fixes
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -185,8 +185,8 @@ jobs:
         with:
           token: ${{ secrets.PAT || github.token }}
           commit-message: "[MegaLinter] Apply linters automatic fixes"
-          title: "[MegaLinter] Apply linters automatic fixes"
-          body-path: megalinter-reports/megalinter-report.md
+          title: "[Lint-Autofix] Apply linters automatic fixes"
+#          body-path: megalinter-reports/megalinter-report.md
           # Keep the branch name stable so repeated runs update the same PR.
           branch: lint-autofix/${{ github.ref_name }}
           delete-branch: true
@@ -222,5 +222,5 @@ jobs:
           always() &&
           steps.ml.outcome == 'failure'
         run: |
-          echo "MegaLinter found issues."
+          echo "Linting found issues."
           exit 1
