@@ -78,21 +78,27 @@ jobs:
             echo "MEGALINTER_USER=$(id -un)"
           } >> "$GITHUB_ENV"
 
-      - name: MegaLinter
-        id: ml
-        continue-on-error: true
-        uses: Wuodan/megalinter@beta
-        env:
-          VALIDATE_ALL_CODEBASE: true
-          GITHUB_TOKEN: ${{ github.token }}
-          APPLY_FIXES: ${{ env.FIX_MODE != 'none' && 'all' || 'none' }}
-          APPLY_FIXES_EVENT: ${{ github.event_name }}
-          APPLY_FIXES_MODE: pull_request
-          # new non-root user test
-          MEGALINTER_UID: ${{ env.MEGALINTER_UID }}
-          MEGALINTER_GID: ${{ env.MEGALINTER_GID }}
-          MEGALINTER_USER:  ${{ env.MEGALINTER_USER }}
+      # - name: MegaLinter
+      #   id: ml
+      #   continue-on-error: true
+      #   uses: Wuodan/megalinter@beta
+      #   env:
+      #     VALIDATE_ALL_CODEBASE: true
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #     APPLY_FIXES: ${{ env.FIX_MODE != 'none' && 'all' || 'none' }}
+      #     APPLY_FIXES_EVENT: ${{ github.event_name }}
+      #     APPLY_FIXES_MODE: pull_request
+      #     # new non-root user test
+      #     MEGALINTER_UID: ${{ env.MEGALINTER_UID }}
+      #     MEGALINTER_GID: ${{ env.MEGALINTER_GID }}
+      #     MEGALINTER_USER:  ${{ env.MEGALINTER_USER }}
 
+      - name: Super-linter
+        uses: super-linter/super-linter@v8.7.0 # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ github.token }}
+      
       - name: "Debug: Print info about megalinter-reports folder"
         run: |
           if [[ -e megalinter-reports ]]; then
