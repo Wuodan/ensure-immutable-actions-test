@@ -70,13 +70,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Get user information
-        run: |
-          {
-            echo "MEGALINTER_UID=$(id -u)"
-            echo "MEGALINTER_GID=$(id -g)"
-            echo "MEGALINTER_USER=$(id -un)"
-          } >> "$GITHUB_ENV"
+#      - name: Get user information
+#        run: |
+#          {
+#            echo "MEGALINTER_UID=$(id -u)"
+#            echo "MEGALINTER_GID=$(id -g)"
+#            echo "MEGALINTER_USER=$(id -un)"
+#          } >> "$GITHUB_ENV"
 
       # - name: MegaLinter
       #   id: ml
