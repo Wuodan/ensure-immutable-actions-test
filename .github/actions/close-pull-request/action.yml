@@ -48,24 +48,28 @@ runs:
             --json number,title
         )"
 
-        # Filter PRs by title-regex 
-        pr_number="$(
+        # Filter PRs by title-regex and read number + title of the first match.
+        pr_match="$(
           jq -r --arg title_regex "${TITLE_REGEX}" '
             map(
+              select(
                 ($title_regex == "") or
                 (.title | test($title_regex))
+              )
             )
-            | .[0].number // empty
+            | if length == 0 then "" else "\(.[0].number)\t\(.[0].title)" end
           ' <<< "${pr_data}"
         )"
 
-        if [[ -z "${pr_number}" ]]; then
+        if [[ -z "${pr_match}" ]]; then
           exit 0
         fi
+
+        IFS=$'\t' read -r pr_number pr_title <<< "${pr_match}"
 
         gh pr close "${pr_number}" \
           --repo "${REPOSITORY}" \
           --delete-branch \
           --comment "${CLOSE_COMMENT}"
 
-        echo "# Closed Pull Request: ${pr_title}"
+        echo "Closed PR #${pr_number}: ${pr_title}"
