@@ -163,7 +163,7 @@ jobs:
           set -euo pipefail
 
           # Avoid creating autofix PRs for workflow-file edits.
-          git restore .github || true
+          # git restore .github || true
 
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "has_changes=true" >> "${GITHUB_OUTPUT}"
