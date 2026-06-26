@@ -35,7 +35,6 @@ permissions:
   actions: write
 
 env:
-  AUTOFIX_BRANCH_PREFIX: lint-autofix/
   # create PR with fixes on:
   # - push to default branch
   # - by choice on workflow_dispatch
@@ -50,7 +49,7 @@ env:
 jobs:
   lint:
     name: Run linters
-    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, env.AUTOFIX_BRANCH_PREFIX) }}
+    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'lint-autofix/') }}
     # runs-on: ubuntu-latest
     runs-on: [self-hosted, linux]
     env:
@@ -126,7 +125,7 @@ jobs:
           commit-message: "[MegaLinter] Apply linters automatic fixes"
           title: "[MegaLinter] Apply linters automatic fixes"
           # Keep the branch name stable so repeated runs update the same PR.
-          branch: ${{ env.AUTOFIX_BRANCH_PREFIX }}${{ github.ref_name }}
+          branch: lint-autofix/${{ github.ref_name }}
           delete-branch: true
           labels: bot
 
@@ -151,7 +150,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
           repository: ${{ github.repository }}
-          pr_branch: ${{ env.AUTOFIX_BRANCH_PREFIX }}${{ github.ref_name }}
+          pr_branch: lint-autofix/${{ github.ref_name }}
           base_branch: ${{ github.ref_name }}
           close_comment: Closing stale pull request because the latest lint run produced no fixes.
 
