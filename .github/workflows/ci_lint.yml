@@ -94,6 +94,8 @@ jobs:
       #     MEGALINTER_USER:  ${{ env.MEGALINTER_USER }}
 
       - name: Super-linter
+        id: sl
+        continue-on-error: true
         uses: super-linter/super-linter@v8.7.0 # x-release-please-version
         env:
           # To report GitHub Actions status checks
@@ -153,17 +155,21 @@ jobs:
           FIX_VUE: true
           FIX_VUE_PRETTIER: true
           FIX_YAML_PRETTIER: true
-      
-#      - name: "Debug: Print info about megalinter-reports folder"
-#        run: |
-#          if [[ -e megalinter-reports ]]; then
-#            ls -alh megalinter-reports
-#          else
-#            echo "No 'megalinter-reports' found" 1>&2
-#          fi
-#          # reset .github or this needs PAT
-#          # refusing to allow a GitHub App to create or update workflow `.github/<path>` without `workflows` permission
-#          git restore .github
+
+      - name: Detect lint changes
+        if: always()
+        id: changes
+        run: |
+          set -euo pipefail
+
+          # Avoid creating autofix PRs for workflow-file edits.
+          git restore .github || true
+
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "has_changes=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "has_changes=false" >> "${GITHUB_OUTPUT}"
+          fi
 
 #      - name: Upload MegaLinter artifacts
 #        if: success() || failure()
@@ -180,7 +186,7 @@ jobs:
         id: cpr
         if: >-
           always() &&
-          steps.ml.outputs.has_updated_sources == 1 &&
+          steps.changes.outputs.has_changes == 'true' &&
           env.FIX_MODE == 'pull_request'
         with:
           token: ${{ secrets.PAT || github.token }}
@@ -195,7 +201,7 @@ jobs:
       - name: Log created lint PR
         if: >-
           always() &&
-          steps.ml.outputs.has_updated_sources == 1 &&
+          steps.changes.outputs.has_changes == 'true' &&
           env.FIX_MODE == 'pull_request'
         env:
           PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
@@ -207,7 +213,7 @@ jobs:
       - name: Close stale lint PR
         if: >-
           always() &&
-          steps.ml.outputs.has_updated_sources != 1 &&
+          steps.changes.outputs.has_changes != 'true' &&
           env.FIX_MODE == 'pull_request'
         uses: ./.github/actions/close-pull-request
         with:
@@ -220,7 +226,7 @@ jobs:
       - name: Fail if linting found issues
         if: >-
           always() &&
-          steps.ml.outcome == 'failure'
+          steps.sl.outcome == 'failure'
         run: |
           echo "Linting found issues."
           exit 1
