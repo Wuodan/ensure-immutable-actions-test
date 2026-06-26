@@ -1,0 +1,246 @@
+name: Validate Refs
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: "Action repository to test"
+        required: false
+        default: "joshjohanning/ensure-immutable-actions"
+        type: string
+      ref:
+        description: "Action ref to test (branch, tag, or SHA)"
+        required: false
+        default: "main"
+        type: string
+      fixtures_repository:
+        description: "Fixtures repository to use for the companion workflows and actions"
+        required: false
+        default: "Wuodan/ensure-immutable-actions-test-fixtures"
+        type: string
+      fixtures_branch:
+        description: "Fixtures branch to use for mutable refs and SHA resolution"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  summarize-config:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Resolve fixtures target
+        id: fixtures
+        env:
+          FIXTURES_REPOSITORY: ${{ inputs.fixtures_repository }}
+          FIXTURES_BRANCH: ${{ inputs.fixtures_branch }}
+        shell: bash
+        run: ./scripts/render-fixtures.sh
+
+      - name: Write job summary
+        shell: bash
+        run: |
+          {
+            echo "## Validation Configuration"
+            echo
+            echo "| Setting | Value |"
+            echo "|---|---|"
+            echo "| Action repository | \`${{ inputs.repository }}\` |"
+            echo "| Action ref | \`${{ inputs.ref }}\` |"
+            echo "| Test repository | \`${{ github.repository }}\` |"
+            echo "| Test branch | \`${{ github.ref_name }}\` |"
+            echo "| Fixtures repository | \`${{ steps.fixtures.outputs.repository }}\` |"
+            echo "| Fixtures branch | \`${{ steps.fixtures.outputs.branch }}\` |"
+            echo "| Fixtures SHA | \`${{ steps.fixtures.outputs.sha }}\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  validate:
+    name: validate (${{ matrix.scenario.name }})
+    needs: summarize-config
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario:
+          - name: targets-mutable.yml
+            workflows: targets-mutable.yml
+            expected_file: expected/targets-mutable.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-immutable.yml
+            workflows: targets-immutable.yml
+            expected_file: expected/targets-immutable.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-unsupported.yml
+            workflows: targets-unsupported.yml
+            expected_file: expected/targets-unsupported.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-first-party.yml include-first-party
+            workflows: targets-first-party.yml
+            expected_file: expected/targets-first-party-include-first-party.json
+            fail_on_mutable: false
+            include_first_party: true
+          - name: workflows glob selection
+            workflows: targets-immut*.yml,targets-unsup*.yml
+            expected_file: expected/workflows-glob-selection.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: exclude-workflows selection
+            exclude_workflows: validate-refs.yml,targets-mutable.yml,targets-unsup*.yml,targets-first-party.yml,targets-mixed-first-party.yml,targets-local-reusable-workflow-*.yml
+            expected_file: expected/exclude-workflows-selection.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: invalid workflows input
+            workflows: "[].yml"
+            expected_file: expected/invalid-workflows-input.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: exclude all workflows
+            exclude_workflows: validate-refs.yml,targets-*.yml
+            expected_file: expected/exclude-all-workflows.json
+            fail_on_mutable: false
+            include_first_party: false
+          - name: targets-mixed-first-party.yml include-first-party
+            workflows: targets-mixed-first-party.yml
+            expected_file: expected/targets-mixed-first-party-include-first-party.json
+            fail_on_mutable: false
+            include_first_party: true
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Checkout action under test
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+          path: action
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: action/package-lock.json
+
+      - name: Build action under test
+        working-directory: action
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          npm run package
+
+      - name: Render repository-specific fixtures
+        id: fixtures
+        env:
+          FIXTURES_REPOSITORY: ${{ inputs.fixtures_repository }}
+          FIXTURES_BRANCH: ${{ inputs.fixtures_branch }}
+        shell: bash
+        run: ./scripts/render-fixtures.sh
+
+      - name: Run ensure-immutable-actions
+        id: scan
+        uses: ./action
+        with:
+          github-token: ${{ github.token }}
+          workflows: ${{ matrix.scenario.workflows }}
+          exclude-workflows: ${{ matrix.scenario.exclude_workflows }}
+          fail-on-mutable: ${{ matrix.scenario.fail_on_mutable }}
+          include-first-party: ${{ matrix.scenario.include_first_party }}
+
+      - name: Assert outputs
+        env:
+          SCENARIO_NAME: ${{ matrix.scenario.name }}
+          EXPECTED_FILE: ${{ matrix.scenario.expected_file }}
+          FIXTURES_REPOSITORY: ${{ steps.fixtures.outputs.repository }}
+          FIXTURES_REPO: ${{ steps.fixtures.outputs.repo }}
+          ALL_PASSED: ${{ steps.scan.outputs['all-passed'] }}
+          WORKFLOWS_CHECKED: ${{ steps.scan.outputs['workflows-checked'] }}
+          MUTABLE_ACTIONS: ${{ steps.scan.outputs['mutable-actions'] }}
+          IMMUTABLE_ACTIONS: ${{ steps.scan.outputs['immutable-actions'] }}
+          UNSUPPORTED_ACTIONS: ${{ steps.scan.outputs['unsupported-actions'] }}
+          FIRST_PARTY_ACTIONS: ${{ steps.scan.outputs['first-party-actions'] || '[]' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat <<EOF | jq -S . > actual.json
+          {
+            "all-passed": $ALL_PASSED,
+            "workflows-checked": $WORKFLOWS_CHECKED,
+            "mutable-actions": $MUTABLE_ACTIONS,
+            "immutable-actions": $IMMUTABLE_ACTIONS,
+            "unsupported-actions": $UNSUPPORTED_ACTIONS,
+            "first-party-actions": $FIRST_PARTY_ACTIONS
+          }
+          EOF
+
+          node ./scripts/normalize-fixture-refs.mjs actual.json > actual.normalized.json
+
+          diff -u "$EXPECTED_FILE" actual.normalized.json
+
+  validate-fail-on-mutable:
+    needs: summarize-config
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Checkout action under test
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+          path: action
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: action/package-lock.json
+
+      - name: Build action under test
+        working-directory: action
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          npm run package
+
+      - name: Render repository-specific fixtures
+        id: fixtures
+        env:
+          FIXTURES_REPOSITORY: ${{ inputs.fixtures_repository }}
+          FIXTURES_BRANCH: ${{ inputs.fixtures_branch }}
+        shell: bash
+        run: ./scripts/render-fixtures.sh
+
+      - name: Run ensure-immutable-actions with fail-on-mutable enabled
+        id: scan
+        continue-on-error: true
+        uses: ./action
+        with:
+          github-token: ${{ github.token }}
+          workflows: targets-mutable.yml
+          fail-on-mutable: true
+
+      - name: Assert scan step failed
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ steps.scan.outcome }}" = "failure"
