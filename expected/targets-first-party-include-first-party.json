@@ -62,7 +62,5 @@
     }
   ],
   "unsupported-actions": [],
-  "workflows-checked": [
-    "targets-first-party.yml"
-  ]
+  "workflows-checked": ["targets-first-party.yml"]
 }
