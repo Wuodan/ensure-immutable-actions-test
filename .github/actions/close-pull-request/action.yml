@@ -33,11 +33,12 @@ runs:
         REPOSITORY: ${{ inputs.repository }}
         PR_BRANCH: ${{ inputs.pr_branch }}
         BASE_BRANCH: ${{ inputs.base_branch }}
-        TITLE_REGEX: ${{ inputs.title_regex != '' && inputs.title_regex || '.*' }}
+        TITLE_REGEX: ${{ inputs.title_regex }}
         CLOSE_COMMENT: ${{ inputs.close_comment }}
       run: |
         set -euo pipefail
 
+        # Read all open PRs for pr-branch -> base-branch
         pr_data="$(
           gh pr list \
             --repo "${REPOSITORY}" \
@@ -47,17 +48,18 @@ runs:
             --json number,title
         )"
 
+        # Filter PRs by title-regex 
         pr_number="$(
           jq -r --arg title_regex "${TITLE_REGEX}" '
             map(
-              select(.title | test($title_regex))
+                ($title_regex == "") or
+                (.title | test($title_regex))
             )
             | .[0].number // empty
           ' <<< "${pr_data}"
         )"
 
         if [[ -z "${pr_number}" ]]; then
-          echo "No open pull request to close for ${PR_BRANCH} -> ${BASE_BRANCH}."
           exit 0
         fi
 
@@ -65,3 +67,5 @@ runs:
           --repo "${REPOSITORY}" \
           --delete-branch \
           --comment "${CLOSE_COMMENT}"
+
+        echo "# Closed Pull Request: ${pr_title}"
