@@ -6,8 +6,6 @@ Close an open GitHub pull request identified by:
 - PR branch
 - base branch
 
-Optionally, restrict the match with a regular expression on the PR title.
-
 If no matching open pull request is found, the action exits successfully without logging noise.
 
 ## What It Does
@@ -15,8 +13,7 @@ If no matching open pull request is found, the action exits successfully without
 The action:
 
 1. Lists open pull requests for the given `repository`, `pr_branch`, and `base_branch`
-2. Optionally filters them by `title_regex`
-3. If a PR is found:
+2. If a PR is found:
    1. Closes it
    2. Deletes the PR branch
    3. Logs the closed PR number and title
@@ -30,14 +27,11 @@ The action:
 | `repository`    | Yes      | Repository in `owner/name` format                   |                     |
 | `pr_branch`     | Yes      | Branch name used by the pull request                |                     |
 | `base_branch`   | Yes      | Base branch name of the pull request                |                     |
-| `title_regex`   | No       | Optional regular expression the PR title must match | `""`                |
 | `close_comment` | No       | Comment posted when closing the pull request        | `Closing stale PR.` |
 
 ## Behavior
 
 - If no open PR matches `pr_branch` and `base_branch`, the action exits successfully.
-- If `title_regex` is set, only PRs whose title matches the regex are eligible.
-- If multiple PRs match, the first match returned by `gh pr list` is closed.
 
 ## Requirements
 
@@ -78,7 +72,6 @@ jobs:
           repository: ${{ github.repository }}
           pr_branch: autofix/${{ github.ref_name }}
           base_branch: ${{ github.ref_name }}
-          title_regex: '^Apply lint autofixes'
           close_comment: Closing stale linter PR.
 ```
 
