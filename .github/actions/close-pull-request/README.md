@@ -16,11 +16,11 @@ The action:
 
 1. Lists open pull requests for the given `repository`, `pr_branch`, and `base_branch`
 2. Optionally filters them by `title_regex`
-3. Closes the first matching pull request
-4. Deletes the PR branch
-5. Logs the closed PR number and title
+3. If a PR is found:
+   1. Closes it
+   2. Deletes the PR branch
+   3. Logs the closed PR number and title
 
-This is useful for cleanup flows where another step may or may not have created or updated a pull request, and a later run should remove the stale PR if it is no longer needed.
 
 ## Inputs
 
@@ -93,9 +93,3 @@ jobs:
     pr_branch: autofix/${{ github.ref_name }}
     base_branch: ${{ github.ref_name }}
 ```
-
-## Notes
-
-- This action only closes pull requests. It does not create or update them.
-- The title regex is intended as an extra safety guard, not the primary selector.
-- Matching by PR branch and base branch keeps the action generic and reusable across workflows.
