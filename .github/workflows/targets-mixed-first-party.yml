@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v6
       - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURES_BRANCH__
       - uses: Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURES_SHA__
