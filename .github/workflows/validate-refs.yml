@@ -32,6 +32,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Resolve fixtures target
         id: fixtures
@@ -114,6 +116,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Checkout action under test
         uses: actions/checkout@v7
@@ -121,6 +125,7 @@ jobs:
           repository: ${{ inputs.repository }}
           ref: ${{ inputs.ref }}
           path: action
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -191,6 +196,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Checkout action under test
         uses: actions/checkout@v7
@@ -198,6 +205,7 @@ jobs:
           repository: ${{ inputs.repository }}
           ref: ${{ inputs.ref }}
           path: action
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
