@@ -17,7 +17,7 @@ The action:
 1. Lists open pull requests for the given `repository`, `pr_branch`, and `base_branch`
 2. Optionally filters them by `title_regex`
 3. Closes the first matching pull request
-4. Deletes the PR branch with `gh pr close --delete-branch`
+4. Deletes the PR branch
 5. Logs the closed PR number and title
 
 This is useful for cleanup flows where another step may or may not have created or updated a pull request, and a later run should remove the stale PR if it is no longer needed.
@@ -40,10 +40,6 @@ This is useful for cleanup flows where another step may or may not have created 
 - If multiple PRs match, the first match returned by `gh pr list` is closed.
 
 ## Requirements
-
-- `gh` must be available on the runner
-- `jq` must be available on the runner
-- the token must be allowed to read and close pull requests
 
 Typical workflow permissions:
 
