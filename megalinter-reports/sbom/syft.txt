@@ -1,0 +1,23 @@
+[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)
+NAME                                                                                            VERSION              TYPE                                     
+./.github/actions/close-pull-request                                                            UNKNOWN              github-action                            
+./.github/workflows/targets-local-reusable-workflow-immutable-child.yml                         UNKNOWN              github-action-workflow                   
+./.github/workflows/targets-local-reusable-workflow-immutable-parent.yml                        UNKNOWN              github-action-workflow                   
+./.github/workflows/targets-local-reusable-workflow-mutable-child.yml                           UNKNOWN              github-action-workflow                   
+./.github/workflows/targets-local-reusable-workflow-mutable-parent.yml                          UNKNOWN              github-action-workflow                   
+./action                                                                                        UNKNOWN              github-action                            
+Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml                    __FIXTURES_BRANCH__  github-action-workflow                   
+Wuodan/ensure-immutable-actions-test-fixtures/.github/workflows/reusable.yml                    __FIXTURES_SHA__     github-action-workflow                   
+Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/docker-unsupported              __FIXTURES_SHA__     github-action                            
+Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf                            __FIXTURES_SHA__     github-action                            
+Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/local-reusable-workflow-target  __FIXTURES_BRANCH__  github-action                            
+Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/local-reusable-workflow-target  __FIXTURES_SHA__     github-action                            
+Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent                          __FIXTURES_BRANCH__  github-action           (+1 duplicate)   
+Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent                          __FIXTURES_SHA__     github-action                            
+Wuodan/megalinter                                                                               beta                 github-action                            
+actions/checkout                                                                                v7                   github-action           (+3 duplicates)  
+actions/checkout                                                                                v7.0.0               github-action                            
+actions/setup-node                                                                              v6                   github-action           (+3 duplicates)  
+actions/upload-artifact                                                                         v7.0.1               github-action                            
+docker://alpine:3.20                                                                            UNKNOWN              github-action                            
+peter-evans/create-pull-request                                                                 v8.1.1               github-action
