@@ -5,7 +5,7 @@ name: "CI: lint"
   workflow_dispatch:
     inputs:
       fix_mode:
-        description: How to publish MegaLinter autofixes for this manual run
+        description: How to publish autofixes for this run
         required: false
         default: pull_request
         type: choice
@@ -124,7 +124,7 @@ jobs:
           delete-branch: true
           labels: bot
 
-      - name: Log created PR
+      - name: Log created lint PR
         if: >-
           always() &&
           steps.ml.outputs.has_updated_sources == 1 &&
@@ -136,7 +136,7 @@ jobs:
           echo "PR Number - ${PR_NUMBER}"
           echo "PR URL - ${PR_URL}"
 
-      - name: Close stale autofix PR
+      - name: Close stale lint PR
         if: >-
           always() &&
           steps.ml.outputs.has_updated_sources != 1 &&
