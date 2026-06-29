@@ -1,0 +1,127 @@
+{
+  "all-passed": false,
+  "first-party-actions": [
+    {
+      "actionPath": "",
+      "allowed": false,
+      "excluded": false,
+      "immutable": false,
+      "isFirstParty": true,
+      "message": "No release found for this reference",
+      "owner": "actions",
+      "ref": "v6",
+      "releaseFound": false,
+      "repo": "checkout",
+      "uses": "actions/checkout@v6"
+    },
+    {
+      "actionPath": "",
+      "allowed": false,
+      "excluded": false,
+      "immutable": false,
+      "isFirstParty": true,
+      "message": "No release found for this reference",
+      "owner": "actions",
+      "ref": "v6",
+      "releaseFound": false,
+      "repo": "setup-node",
+      "uses": "actions/setup-node@v6"
+    }
+  ],
+  "immutable-actions": [
+    {
+      "actionPath": "composite-actions/leaf",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/leaf",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__"
+    }
+  ],
+  "mutable-actions": [
+    {
+      "actionPath": "composite-actions/parent",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": "composite-actions/parent/child",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": false,
+      "message": "No release found for this reference",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_MUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent/child@__FIXTURE_MUTABLE_REF__"
+    },
+    {
+      "actionPath": "",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/leaf@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": true,
+      "message": "No release found for this reference",
+      "owner": "actions",
+      "ref": "v6",
+      "releaseFound": false,
+      "repo": "checkout",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "actions/checkout@v6"
+    },
+    {
+      "actionPath": "",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/parent@__FIXTURE_MUTABLE_REF__",
+      "immutable": false,
+      "isFirstParty": true,
+      "message": "No release found for this reference",
+      "owner": "actions",
+      "ref": "v6",
+      "releaseFound": false,
+      "repo": "setup-node",
+      "sourceJobName": "mixed",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-mixed-first-party.yml",
+      "uses": "actions/setup-node@v6"
+    }
+  ],
+  "unsupported-actions": [],
+  "workflows-checked": ["targets-mixed-first-party.yml"]
+}

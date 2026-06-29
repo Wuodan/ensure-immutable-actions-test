@@ -1,0 +1,38 @@
+{
+  "all-passed": false,
+  "first-party-actions": [],
+  "immutable-actions": [
+    {
+      "actionPath": "composite-actions/docker-unsupported",
+      "entrypointUses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/docker-unsupported@__FIXTURE_IMMUTABLE_REF__",
+      "immutable": true,
+      "isFirstParty": false,
+      "message": "Immutable (full SHA reference)",
+      "owner": "Wuodan",
+      "ref": "__FIXTURE_IMMUTABLE_REF__",
+      "releaseFound": false,
+      "repo": "ensure-immutable-actions-test-fixtures",
+      "sourceJobName": "remote-composite",
+      "sourceStepName": "unnamed step",
+      "sourceWorkflowFile": "targets-unsupported.yml",
+      "uses": "Wuodan/ensure-immutable-actions-test-fixtures/composite-actions/docker-unsupported@__FIXTURE_IMMUTABLE_REF__"
+    }
+  ],
+  "mutable-actions": [],
+  "unsupported-actions": [
+    {
+      "message": "Unsupported reference type: docker://",
+      "sourceLocations": [
+        {
+          "jobName": "remote-composite",
+          "stepName": "unnamed step",
+          "workflowFile": "targets-unsupported.yml"
+        }
+      ],
+      "supported": false,
+      "unsupportedType": "protocol",
+      "uses": "docker://alpine:3.20"
+    }
+  ],
+  "workflows-checked": ["targets-unsupported.yml"]
+}
